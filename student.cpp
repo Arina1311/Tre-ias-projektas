@@ -9,7 +9,7 @@ struct Studentas {
     string Vardas, Pavarde;
     vector<int> NamuDarbai;
     int Egzaminas;
-    float Vidurkis=0.0;
+    float Vidurkis;
 };
 
 int main() 
