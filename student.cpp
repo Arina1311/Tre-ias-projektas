@@ -14,6 +14,35 @@ struct Studentas {
     double Mediana;
 };
 
+//-----------------Galutinis su vidurkiu--------------
+float GalutinisVidurkis (double suma, vector<int> duomenys, int egzaminas)
+{
+    int kiekis = duomenys.size();
+    return 0.4 * (suma/kiekis) + 0.6 * egzaminas;
+}
+
+//-----------------------Mediana----------------------
+double Mediana (vector<int> duomenys)
+{
+    sort(duomenys.begin(), duomenys.end());
+    int dydys = duomenys.size();
+    int vid = dydys/2;
+        if (dydys % 2 == 0) 
+            return (duomenys[vid - 1] + duomenys[vid]) / 2.0;
+        else 
+            return duomenys[vid];
+        
+}
+
+//-----------------Galutinis su mediana---------------
+double GalutinisMediana (double mediana, int egzaminas)
+{
+    return 0.4 * mediana + 0.6 * egzaminas;
+}
+
+//----------------------------------------------------
+
+
 int main() {
 
     Studentas Laikinas; 
@@ -25,48 +54,42 @@ int main() {
     cin >> StudentuSkaicius;
 
    
-    for (int i = 0; i < StudentuSkaicius; i++) {
-        
+    for (int i = 0; i < StudentuSkaicius; i++) 
+    {
         cout << "Iveskite varda ir pavarde studento: ";
         cin >> Laikinas.Vardas >> Laikinas.Pavarde;
 
         cout << "Iveskite namu darbu skaiciu: ";
         cin >> NDSkaicius;
 
-        int NDVidurkis = 0; // Kiekvienam studentui naujas vidurkis
+        double NDsuma = 0; // Kiekvienam studentui naujas vidurkis
 
-        for (int j = 0; j < NDSkaicius; j++) {
+        for (int j = 0; j < NDSkaicius; j++) 
+        {
             int k;
             cout << "Iveskite " << j + 1 << " pazymi: ";
             cin >> k;
             Laikinas.NamuDarbai.push_back(k); // Tiknka jeigu reikie perziureti namu darbu rezultatus
-            NDVidurkis += k;
+            NDsuma += k;
         }
-
-        NDVidurkis /= NDSkaicius; 
 
         cout << "Iveskite egzamino pazymi: ";
         cin >> Laikinas.Egzaminas;
 
-        // Skaiciuojame galutini vidurki
-        Laikinas.Vidurkis = Laikinas.Egzaminas * 0.6 + NDVidurkis * 0.4;
+        // Skaiciuojame galutini vidurkis
+        Laikinas.Vidurkis = GalutinisVidurkis(NDsuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
 
-        // Skaiciuojame mediana, pirmiausia sorta atliekame teisingam duomenu isdestymui
-        sort(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end());
-        int vid = NDSkaicius / 2;
-
-        //Naudojame vektoriaus metodus
-        if (NDSkaicius % 2 == 0) 
-            Laikinas.Mediana = (Laikinas.NamuDarbai[vid - 1] + Laikinas.NamuDarbai[vid]) / 2.0;
-        else 
-            Laikinas.Mediana = Laikinas.NamuDarbai[vid];
+        //Mediana
+        double TarpineMediana = Mediana(Laikinas.NamuDarbai);
+        Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
 
         grupe.push_back(Laikinas);
         Laikinas.NamuDarbai.clear();
+
     }
 
     //Leidziame vartotojui pasirinkti norima skaiciavimo buda
-    cout << "Noredami apskaiciuoti vidurki iveskite (V), mediana (M) ";
+    cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
     cin >> Pasirinkimas;
 
     cout << fixed << setprecision(2);
@@ -78,6 +101,6 @@ int main() {
     {
         cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(15) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << endl;
     }
-    
+
     return 0;
 }
