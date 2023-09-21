@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,6 +11,7 @@ struct Studentas {
     vector<int> NamuDarbai;
     int Egzaminas;
     float Vidurkis = 0.0;
+    double Mediana;
 };
 
 int main() {
@@ -17,6 +19,7 @@ int main() {
     Studentas Laikinas; 
     vector<Studentas> grupe;
     int StudentuSkaicius, NDSkaicius;
+    char Pasirinkimas;
 
     cout << "Iveskite studentu skaiciu: ";
     cin >> StudentuSkaicius;
@@ -45,19 +48,36 @@ int main() {
         cout << "Iveskite egzamino pazymi: ";
         cin >> Laikinas.Egzaminas;
 
+        // Skaiciuojame galutini vidurki
         Laikinas.Vidurkis = Laikinas.Egzaminas * 0.6 + NDVidurkis * 0.4;
+
+        // Skaiciuojame mediana, pirmiausia sorta atliekame teisingam duomenu isdestymui
+        sort(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end());
+        int vid = NDSkaicius / 2;
+
+        //Naudojame vektoriaus metodus
+        if (NDSkaicius % 2 == 0) 
+            Laikinas.Mediana = (Laikinas.NamuDarbai[vid - 1] + Laikinas.NamuDarbai[vid]) / 2.0;
+        else 
+            Laikinas.Mediana = Laikinas.NamuDarbai[vid];
 
         grupe.push_back(Laikinas);
         Laikinas.NamuDarbai.clear();
     }
 
+    //Leidziame vartotojui pasirinkti norima skaiciavimo buda
+    cout << "Noredami apskaiciuoti vidurki iveskite (V), mediana (M) ";
+    cin >> Pasirinkimas;
+
     cout << fixed << setprecision(2);
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.)" << endl;
+    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << (Pasirinkimas == 'V' ? "Galutinis (Vid.)" : "Galutinis (Med.)") << endl;
+    
     cout << "---------------------" << "---------------------" << "---------------------" << endl;
 
-    for (auto &a : grupe) {
-        cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(15) << a.Vidurkis << endl;
+    for (auto &a : grupe) 
+    {
+        cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(15) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << endl;
     }
-
+    
     return 0;
 }
