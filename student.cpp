@@ -47,7 +47,7 @@ int main() {
 
     Studentas Laikinas; 
     vector<Studentas> grupe;
-    int StudentuSkaicius, NDSkaicius;
+    int StudentuSkaicius, NDSkaicius, NDSuma=0;
     char Pasirinkimas;
 
     cout << "Iveskite studentu skaiciu: ";
@@ -55,29 +55,48 @@ int main() {
 
    
     for (int i = 0; i < StudentuSkaicius; i++) 
-    {
+    {   
+        
         cout << "Iveskite varda ir pavarde studento: ";
         cin >> Laikinas.Vardas >> Laikinas.Pavarde;
 
-        cout << "Iveskite namu darbu skaiciu: ";
-        cin >> NDSkaicius;
+        Laikinas.Vidurkis = 0.0;
+        Laikinas.Mediana = 0.0;
 
-        double NDsuma = 0; // Kiekvienam studentui naujas vidurkis
+        NDSkaicius = 0;
 
-        for (int j = 0; j < NDSkaicius; j++) 
-        {
-            int k;
-            cout << "Iveskite " << j + 1 << " pazymi: ";
-            cin >> k;
-            Laikinas.NamuDarbai.push_back(k); // Tiknka jeigu reikie perziureti namu darbu rezultatus
-            NDsuma += k;
+        cin.ignore();
+
+        while (true) 
+        { 
+            cout << "Iveskite namu darbo pazymi arba pastauskite ENTER du kartus, kad pabaigtumete ivedima: ";
+            string NDpaz;
+            getline(cin, NDpaz);
+
+            if (NDpaz.empty()) {
+                if (NDSkaicius == 0) {
+                    cerr << "Klaida. Reikalingas bent vienas namu darbas." << endl;
+                    continue;
+                }
+                break;
+            }   
+
+            if (cin.fail()) {
+                cerr << "Klaida: Netinkama ivestis. Prašome ivesti skaiciu." << endl;
+                cin.clear();
+                continue;
+            }
+
+            int rezultatas = stoi(NDpaz);
+            Laikinas.NamuDarbai.push_back(rezultatas);
+            NDSuma += rezultatas;
+            NDSkaicius++;
         }
-
         cout << "Iveskite egzamino pazymi: ";
         cin >> Laikinas.Egzaminas;
 
-        // Skaiciuojame galutini vidurkis
-        Laikinas.Vidurkis = GalutinisVidurkis(NDsuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
+        // Skaiciuojame galutini vidurki
+        Laikinas.Vidurkis = GalutinisVidurkis(NDSuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
 
         //Mediana
         double TarpineMediana = Mediana(Laikinas.NamuDarbai);
@@ -104,3 +123,4 @@ int main() {
 
     return 0;
 }
+
