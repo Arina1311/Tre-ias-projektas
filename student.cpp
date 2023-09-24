@@ -3,6 +3,7 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <cstdlib> 
 
 using namespace std;
 
@@ -13,14 +14,12 @@ struct Studentas {
     float Vidurkis = 0.0;
     double Mediana;
 };
-
 //-----------------Galutinis su vidurkiu--------------
 float GalutinisVidurkis (double suma, vector<int> duomenys, int egzaminas)
 {
     int kiekis = duomenys.size();
     return 0.4 * (suma/kiekis) + 0.6 * egzaminas;
 }
-
 //-----------------------Mediana----------------------
 double Mediana (vector<int> duomenys)
 {
@@ -33,7 +32,6 @@ double Mediana (vector<int> duomenys)
             return duomenys[vid];
         
 }
-
 //-----------------Galutinis su mediana---------------
 double GalutinisMediana (double mediana, int egzaminas)
 {
@@ -41,8 +39,6 @@ double GalutinisMediana (double mediana, int egzaminas)
 }
 
 //----------------------------------------------------
-
-
 int main() {
 
     Studentas Laikinas; 
@@ -53,11 +49,56 @@ int main() {
     cout << "Iveskite studentu skaiciu: ";
     cin >> StudentuSkaicius;
 
-   
-    for (int i = 0; i < StudentuSkaicius; i++) 
-    {   
-        
+    char atsakymas;
+    cout << "Pasirinkite ar norite patys irasyti namu darbus (S) ar sugeneruoti (A)?";
+    cin >> atsakymas;
+
+    if (atsakymas == 'A')
+    {
+        for (int i = 0; i < StudentuSkaicius; i++) 
+        {   
         cout << "Iveskite varda ir pavarde studento: ";
+        cin >> Laikinas.Vardas >> Laikinas.Pavarde;
+
+        Laikinas.Vidurkis = 0.0;
+        Laikinas.Mediana = 0.0;
+
+        NDSkaicius = 0;
+
+        // Generuojame atsitiktinius namų darbų balus
+        int minBalas = 1; 
+        int maxBalas = 10; 
+        int baluSkaicius;
+        cout << "Iveskite kiek norite pazymiu sugeneruoti: "; 
+        cin >> baluSkaicius;
+
+        for (int j = 0; j < baluSkaicius; j++) 
+        {
+            int atsitiktinisBalas = rand() % (maxBalas - minBalas + 1) + minBalas;
+            Laikinas.NamuDarbai.push_back(atsitiktinisBalas);
+            NDSuma += atsitiktinisBalas;
+            NDSkaicius++;
+        }
+
+        // Generuojame atsitiktinį egzamino balą
+        Laikinas.Egzaminas = rand() % (maxBalas - minBalas + 1) + minBalas;
+
+        // Skaiciuojame galutini vidurkis
+        Laikinas.Vidurkis = GalutinisVidurkis(NDSuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
+
+        //Mediana
+        double TarpineMediana = Mediana(Laikinas.NamuDarbai);
+        Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
+
+        grupe.push_back(Laikinas);
+        Laikinas.NamuDarbai.clear();
+        }
+    }
+    else 
+    {
+        for (int i = 0; i < StudentuSkaicius; i++) 
+        {
+            cout << "Iveskite varda ir pavarde studento: ";
         cin >> Laikinas.Vardas >> Laikinas.Pavarde;
 
         Laikinas.Vidurkis = 0.0;
@@ -95,7 +136,7 @@ int main() {
         cout << "Iveskite egzamino pazymi: ";
         cin >> Laikinas.Egzaminas;
 
-        // Skaiciuojame galutini vidurki
+        // Skaiciuojame galutini vidurkis
         Laikinas.Vidurkis = GalutinisVidurkis(NDSuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
 
         //Mediana
@@ -104,7 +145,7 @@ int main() {
 
         grupe.push_back(Laikinas);
         Laikinas.NamuDarbai.clear();
-
+        }
     }
 
     //Leidziame vartotojui pasirinkti norima skaiciavimo buda
@@ -112,15 +153,15 @@ int main() {
     cin >> Pasirinkimas;
 
     cout << fixed << setprecision(2);
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << (Pasirinkimas == 'V' ? "Galutinis (Vid.)" : "Galutinis (Med.)") << endl;
-    
-    cout << "---------------------" << "---------------------" << "---------------------" << endl;
+    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(20) << (Pasirinkimas == 'V' ? "Galutinis(Vid.)" : "Galutinis(Med.)") << setw(15) << "Egzaminas" ;
+    cout << setw(15) << "Pazymiai" << endl;
+    cout << "---------------------" << "---------------------" << "---------------------" << "---------------------" << endl;
 
-    for (auto &a : grupe) 
-    {
-        cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(15) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << endl;
+    for (auto &a : grupe) {
+        cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(20) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << setw(15) << a.Egzaminas;
+        for (auto &z: a.NamuDarbai)
+        cout << z <<" ";
+        cout << endl;
     }
-
     return 0;
 }
-
