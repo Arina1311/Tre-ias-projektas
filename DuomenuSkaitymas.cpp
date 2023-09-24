@@ -168,14 +168,28 @@ int main() {
         cerr << "Nepavyko atidaryti failo." << endl;
         return 1;
     }
-        //skaitome pirma eilute
+        // Read the header line (column names)
         string header;
-        getline(input, header);
+        int n;
+        if (getline(input, header)) {
+            istringstream iss(header);
+            vector<string> stulpeliai;
+            string token;
 
-    //Skaitome duomenys is failo
+            while (iss >> token) {
+                stulpeliai.push_back(token);
+            }
+
+            n = stulpeliai.size()-3;
+        } 
+        else {
+            cerr << "The file is empty." << endl;
+        }
+
+    // Read data from the file
     while (!input.eof()) {
         input >> Laikinas.Vardas >> Laikinas.Pavarde;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < n; i++) {
             int pazymys;
             input >> pazymys;
             Laikinas.NamuDarbai.push_back(pazymys);
@@ -197,17 +211,26 @@ int main() {
     cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
     cin >> Pasirinkimas;
 
-    cout << fixed << setprecision(2);
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(20) << (Pasirinkimas == 'V' ? "Galutinis(Vid.)" : "Galutinis(Med.)") << setw(15) << "Egzaminas" ;
-    cout << setw(15) << "Pazymiai" << endl;
-    cout << "---------------------" << "---------------------" << "---------------------" << "---------------------" << endl;
-
-    for (auto &a : grupe) {
-        cout << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(20) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << setw(15) << a.Egzaminas;
-        for (auto &z: a.NamuDarbai)
-        cout << z <<" ";
-        cout << endl;
+    ofstream output("rezultatai.txt"); // Create a new output file
+    if (!output.is_open()) {
+        cerr << "Failed to create the output file." << endl;
+        return 1;
     }
 
+    output << fixed << setprecision(2);
+    output << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(20) << (Pasirinkimas == 'V' ? "Galutinis(Vid.)" : "Galutinis(Med.)") << setw(15) << "Egzaminas" ;
+    output << setw(15) << "Pazymiai" << endl;
+    output << "---------------------" << "---------------------" << "---------------------" << "---------------------" << endl;
+
+    for (auto &a : grupe) {
+        output << left << setw(15) << a.Vardas << setw(15) << a.Pavarde << setw(20) << (Pasirinkimas == 'V' ? a.Vidurkis : a.Mediana) << setw(15) << a.Egzaminas;
+        for (auto &z: a.NamuDarbai)
+        output << z <<" ";
+        output << endl;
+    }
+
+    output.close(); // Close the output file
+
+    cout << "Rezultatai paruošti faile";
     return 0;
 }
