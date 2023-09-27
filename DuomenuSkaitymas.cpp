@@ -6,6 +6,7 @@
 #include <cstdlib> 
 #include <fstream>
 #include <sstream>
+#include <numeric> 
 
 using namespace std;
 
@@ -116,6 +117,7 @@ int main() {
             Laikinas.Vidurkis = 0.0;
             Laikinas.Mediana = 0.0;
             NDSkaicius = 0;
+            NDSuma = 0;
 
             // Generuojame atsitiktinius namų darbų balus
             int minBalas = 1; 
@@ -156,6 +158,7 @@ int main() {
             Laikinas.Vidurkis = 0.0;
             Laikinas.Mediana = 0.0;
             NDSkaicius = 0;
+            NDSuma = 0;
 
             cin.ignore();
 
@@ -250,7 +253,9 @@ int main() {
             }
             input >> Laikinas.Egzaminas;
 
-            Laikinas.Vidurkis = GalutinisVidurkis(NDSuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
+            int Nsuma = accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0);
+
+            Laikinas.Vidurkis = GalutinisVidurkis(Nsuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
 
             double TarpineMediana = Mediana(Laikinas.NamuDarbai);
             Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
