@@ -1,2 +1,2 @@
-# First_Project
-Objectinis_Programavimas_ND_Arina_Tichonovskaja
+# Pirmas Projektas
+Objectinis Programavimas ND Arina Tichonovskaja
