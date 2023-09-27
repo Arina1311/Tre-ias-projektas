@@ -39,7 +39,14 @@ double GalutinisMediana (double mediana, int egzaminas)
 {
     return 0.4 * mediana + 0.6 * egzaminas;
 }
-
+//-------------Palyginimas pagal pavarde--------------
+bool palygintiPagalPavarde(const Studentas& a, const Studentas& b) {
+    return a.Pavarde < b.Pavarde;
+}
+//------------Palyginimas pagal varda-----------------
+bool palygintiPagalVarda(const Studentas& a, const Studentas& b) {
+    return a.Vardas < b.Vardas;
+}
 //----------------------------------------------------
 int main() {
 
@@ -216,6 +223,10 @@ int main() {
         cerr << "Failed to create the output file." << endl;
         return 1;
     }
+
+    //Palyginimas ir rusiavimas pagal pavarde ir varda
+    sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
+    stable_sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
 
     output << fixed << setprecision(2);
     output << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(20) << (Pasirinkimas == 'V' ? "Galutinis(Vid.)" : "Galutinis(Med.)") << setw(15) << "Egzaminas" ;
