@@ -11,15 +11,26 @@ int main() {
     int StudentuSkaicius;
     char Pasirinkimas;
 
-    char parinktis;
+    char parinktis, generavimas;
     bool tinkamaParinktis = false; // Sukuriame kintamąjį, kuris žymės, ar parinktis tinkama
+   
+    cout << "Ar norite sugeneruoti atsitiktinius studentu duomenys (T/N): ";
+    cin >> generavimas;
+    if (generavimas == 'T' || generavimas == 't') {
+        int StudSkaicius, NDk;
+        cout << "Iveskite kiek duomenu norite sugeneruoti: ";
+        cin >> StudSkaicius;
+        cout << "Iveskite kiek ND norite sugeneruoti: ";
+        cin >> NDk;
+        KurimasDuomenu(StudSkaicius, NDk);
+        }
 
     while (!tinkamaParinktis) {
-        cout << "Iveskite raide (R), jei norite rašyti duomenis savarankiškai, (F) jeigu norite nuskaityti iš failo, (G) jeigu norite sugeneruoti duomenu faila: ";
+        cout << "Iveskite raide (R), jei norite rašyti duomenis savarankiškai, (F) jeigu norite nuskaityti iš failo: ";
     try {
         cin >> parinktis;
-        if (parinktis != 'R' && parinktis != 'r' && parinktis != 'F' && parinktis != 'f'&& parinktis != 'G' && parinktis != 'g') {
-            throw invalid_argument("Netinkama parinktis. Įveskite 'R', 'G' arba 'F'.");
+        if (parinktis != 'R' && parinktis != 'r' && parinktis != 'F' && parinktis != 'f') {
+            throw invalid_argument("Netinkama parinktis. Įveskite 'R' arba 'F'.");
         }
         tinkamaParinktis = true; // Jei pasiekėme šią eilutę, tai parinktis yra tinkama
     } catch (const invalid_argument &e) {
@@ -151,16 +162,6 @@ int main() {
             Laikinas.NamuDarbai.clear();
             }
         }
-    }
-      
-    else if (parinktis == 'G' || parinktis == 'g')
-    {
-        int StudSkaicius, NDk;
-        cout << "Iveskite kiek duomenu norite sugeneruoti: ";
-        cin >> StudSkaicius;
-        cout << "Iveskite kiek ND norite sugeneruoti: ";
-        cin >> NDk;
-        KurimasDuomenu(StudSkaicius, NDk);
     }
 
     else{
