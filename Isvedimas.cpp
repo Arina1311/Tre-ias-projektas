@@ -38,21 +38,29 @@ void KurimasDuomenu(int &StudSkaicius, int &NDk) {
     }
 
     // antrastes
-    outputFile << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
+    outputFile << left << setw(20) << "Vardas" << right << setw(20) << "Pavarde";
     for (int i = 1; i <= NDk; i++) {
-        outputFile << setw(7) << "ND" + to_string(i);
+        outputFile << right << setw(10) << "ND" + to_string(i);
     }
-     outputFile << setw(7) << "Egz." << endl;
-
+    outputFile << right << setw(10) << "Egz." << endl;
+    
     for (int j = 1; j <= StudSkaicius; j++) {
-        outputFile <<left << setw(20) << "Vardas"+ to_string(j)<<setw(20)<< "Pavarde" + to_string(j);
+        outputFile << left << setw(20) << "Vardas" + to_string(j) << right << setw(20) << "Pavarde" + to_string(j);
 
         for (int k = 0; k < NDk; k++) {
-             outputFile << setw(7) << rand() % 10 + 1;
+            int atsitiktinisBalas = rand() % 10 + 1; // Generuojame atsitiktinį balą nuo 1 iki 10
+            outputFile << right << setw(10) << atsitiktinisBalas;
         }
-        outputFile << setw(7) << rand() % 10 + 1 << endl;
+
+        int atsitiktinisEgzaminas = rand() % 10 + 1; // Generuojame atsitiktinį egzamino balą nuo 1 iki 10
+        outputFile << right << setw(10) << atsitiktinisEgzaminas;
+
+        if (j < StudSkaicius) {
+            outputFile << endl; // Tik jei tai ne paskutinis studentas, pridedame naują eilutę
+        }
     }
     outputFile.close();
     cout << "Sugeneruotas " << StudSkaicius << " studentu duomenu failas " << fileName << endl;
 }
+
 
