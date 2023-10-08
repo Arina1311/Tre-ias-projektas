@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <numeric>
 #include <cstdlib> 
 #include "duomenys.h"
@@ -10,19 +11,30 @@ int main() {
     vector<Studentas> grupe;
     int StudentuSkaicius;
     char Pasirinkimas;
+    int StudSkaicius, NDk;
 
     char parinktis, generavimas;
     bool tinkamaParinktis = false; // Sukuriame kintamąjį, kuris žymės, ar parinktis tinkama
+
+    ofstream matavimai("matavimai.txt", std::ios::app);
    
     cout << "Ar norite sugeneruoti atsitiktinius studentu duomenys (T/N): ";
     cin >> generavimas;
     if (generavimas == 'T' || generavimas == 't') {
-        int StudSkaicius, NDk;
         cout << "Iveskite kiek duomenu norite sugeneruoti: ";
         cin >> StudSkaicius;
         cout << "Iveskite kiek ND norite sugeneruoti: ";
         cin >> NDk;
+
+        matavimai << StudSkaicius << " duomenu failas:" << endl;
+        auto start = chrono::high_resolution_clock::now();
         KurimasDuomenu(StudSkaicius, NDk);
+
+        auto end = std::chrono::high_resolution_clock::now();
+        chrono::duration<double> duration = end - start;
+
+        // Atspausdiname laiko trukmę
+        matavimai << "- Failo su "<< StudSkaicius <<" duomenimis kurimo trukmė: " << duration.count() << endl;
         }
 
     while (!tinkamaParinktis) {
@@ -165,15 +177,26 @@ int main() {
     }
 
     else{
+
     string FileName;
     cout << "Iveskite failo pavadinima: ";
     cin >> FileName;
+
+    auto startNuskaitymas = chrono::high_resolution_clock::now();
     grupe = SkaitytiDuomenisIsFailo(FileName);
+    auto endNuskaitymas = chrono::high_resolution_clock::now();
+    chrono::duration<double> durationNuskaitymas = endNuskaitymas - startNuskaitymas;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis nuskaitymo trukme: " << durationNuskaitymas.count() << endl;
     }
 
-    //Palyginimas ir rusiavimas pagal pavarde ir varda
+    //Palyginimas ir rusiavimas pagal pavarde ir varda, testavimas
+    auto startSort = chrono::high_resolution_clock::now();
     sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
     stable_sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
+    auto endSort = chrono::high_resolution_clock::now();
+    chrono::duration<double> durationSort = endSort - startSort;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << durationSort.count() << endl;
+
 
     //Leidziame vartotojui pasirinkti norima skaiciavimo buda
     cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
@@ -187,7 +210,9 @@ int main() {
     cin >> ats;
 
     if (ats == 'T' || ats == 't'){
-    // Eikite per visus studentus ir kategorizuokite juos
+    // Rusiavimo testavimas
+    auto startRusiavimas = chrono::high_resolution_clock::now();
+
     for (const Studentas &studentas : grupe) {
     if (studentas.Vidurkis < 5.0) {
         vargsiukai.push_back(studentas); 
@@ -196,12 +221,30 @@ int main() {
     }
     }
 
+    auto endRusiavimas = chrono::high_resolution_clock::now();
+    chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << durationRusiavimas.count() << endl;
+
+    // Pasiskirstymo testavimas
+    auto startIsvedimasVarg = chrono::high_resolution_clock::now();
     RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+    auto endIsvedimasVarg = chrono::high_resolution_clock::now();
+    chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
+    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << durationIsvedimasVarg.count() << endl;
+
+    auto startIsvedimasKiet = chrono::high_resolution_clock::now();
     RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
+    auto endIsvedimasKiet = chrono::high_resolution_clock::now();
+    chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << durationIsvedimasKiet.count() << endl;
     }
+
     else {
     RasymasIRezultatuFaila("rezultatai1.txt", Pasirinkimas, grupe);
     }
+
+    matavimai << "-------------------------------------------------------------------" << endl << endl;
+    matavimai.close();
 
     return 0;
 }
