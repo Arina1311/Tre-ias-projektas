@@ -165,11 +165,9 @@ int main() {
     }
 
     else{
-
     string FileName;
     cout << "Iveskite failo pavadinima: ";
     cin >> FileName;
-
     grupe = SkaitytiDuomenisIsFailo(FileName);
     }
 
@@ -181,7 +179,29 @@ int main() {
     cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
     cin >> Pasirinkimas;
 
+    vector<Studentas> vargsiukai;
+    vector<Studentas> kietuoliai;
+
+    cout << "Ar norite paskirstyti studentus pagal pazymius? (T/N): ";
+    char ats;
+    cin >> ats;
+
+    if (ats == 'T' || ats == 't'){
+    // Eikite per visus studentus ir kategorizuokite juos
+    for (const Studentas &studentas : grupe) {
+    if (studentas.Vidurkis < 5.0) {
+        vargsiukai.push_back(studentas); 
+    } else {
+        kietuoliai.push_back(studentas); 
+    }
+    }
+
+    RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+    RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
+    }
+    else {
     RasymasIRezultatuFaila("rezultatai1.txt", Pasirinkimas, grupe);
+    }
 
     return 0;
 }
