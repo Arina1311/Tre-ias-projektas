@@ -17,6 +17,10 @@ int main() {
     bool tinkamaParinktis = false; // Sukuriame kintamąjį, kuris žymės, ar parinktis tinkama
 
     ofstream matavimai("matavimai.txt", std::ios::app);
+
+    int testuSkaicius = 5;
+    double M1[testuSkaicius], M2[testuSkaicius],  M3[testuSkaicius],  M4[testuSkaicius],  M5[testuSkaicius],  M6[testuSkaicius];
+
    
     cout << "Ar norite sugeneruoti atsitiktinius studentu duomenys (T/N): ";
     cin >> generavimas;
@@ -27,14 +31,20 @@ int main() {
         cin >> NDk;
 
         matavimai << StudSkaicius << " duomenu failas:" << endl;
+
+        for (int t=0; t < testuSkaicius; t++){
         auto start = chrono::high_resolution_clock::now();
         KurimasDuomenu(StudSkaicius, NDk);
 
         auto end = std::chrono::high_resolution_clock::now();
         chrono::duration<double> duration = end - start;
+        M1[t] = duration.count();
+        }
 
+        //double testas1 = Tarpinis(M1,testuSkaicius);
+        double testas1 = vidutiniai(M1,testuSkaicius);
         // Atspausdiname laiko trukmę
-        matavimai << "- Failo su "<< StudSkaicius <<" duomenimis kurimo trukmė: " << duration.count() << endl;
+        cout << "- Failo su "<< StudSkaicius <<" duomenimis kurimo trukmė: " << testas1 << endl;
         }
 
     while (!tinkamaParinktis) {
@@ -182,20 +192,36 @@ int main() {
     cout << "Iveskite failo pavadinima: ";
     cin >> FileName;
 
-    auto startNuskaitymas = chrono::high_resolution_clock::now();
-    grupe = SkaitytiDuomenisIsFailo(FileName);
-    auto endNuskaitymas = chrono::high_resolution_clock::now();
-    chrono::duration<double> durationNuskaitymas = endNuskaitymas - startNuskaitymas;
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis nuskaitymo trukme: " << durationNuskaitymas.count() << endl;
+        for (int t=0; t < testuSkaicius; t++){
+        auto startNuskaitymas = chrono::high_resolution_clock::now();
+        
+        grupe = SkaitytiDuomenisIsFailo(FileName);
+        
+        auto endNuskaitymas = chrono::high_resolution_clock::now();
+        chrono::duration<double> durationNuskaitymas = endNuskaitymas - startNuskaitymas;
+        M2[t] = durationNuskaitymas.count();
+        }
+
+    //double testas2 = Tarpinis(M2,testuSkaicius);
+    double testas2 = vidutiniai(M2,testuSkaicius);
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis nuskaitymo trukme: " << testas2 << endl;
     }
 
     //Palyginimas ir rusiavimas pagal pavarde ir varda, testavimas
-    auto startSort = chrono::high_resolution_clock::now();
-    sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
-    stable_sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
-    auto endSort = chrono::high_resolution_clock::now();
-    chrono::duration<double> durationSort = endSort - startSort;
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << durationSort.count() << endl;
+        for (int t=0; t < testuSkaicius; t++){
+        auto startSort = chrono::high_resolution_clock::now();
+
+        sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
+        stable_sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
+
+        auto endSort = chrono::high_resolution_clock::now();
+        chrono::duration<double> durationSort = endSort - startSort;
+        M3[t] = durationSort.count();
+        }
+
+    //double testas3 = Tarpinis(M3,testuSkaicius);
+    double testas3 = vidutiniai(M3,testuSkaicius);
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << testas3 << endl;
 
 
     //Leidziame vartotojui pasirinkti norima skaiciavimo buda
@@ -220,31 +246,57 @@ int main() {
         kietuoliai.push_back(studentas); 
     }
     }
+        for (int t=0; t < testuSkaicius; t++){
 
-    auto endRusiavimas = chrono::high_resolution_clock::now();
-    chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << durationRusiavimas.count() << endl;
+        auto endRusiavimas = chrono::high_resolution_clock::now();
+        chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
+        M4[t] = durationRusiavimas.count();
+        }
+    
+    //double testas4 = Tarpinis(M4,testuSkaicius);
+    double testas4 = vidutiniai(M4,testuSkaicius);
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << testas4 << endl;
 
     // Pasiskirstymo testavimas
-    auto startIsvedimasVarg = chrono::high_resolution_clock::now();
-    RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
-    auto endIsvedimasVarg = chrono::high_resolution_clock::now();
-    chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
-    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << durationIsvedimasVarg.count() << endl;
+        for (int t=0; t < testuSkaicius; t++){
 
-    auto startIsvedimasKiet = chrono::high_resolution_clock::now();
-    RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
-    auto endIsvedimasKiet = chrono::high_resolution_clock::now();
-    chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << durationIsvedimasKiet.count() << endl;
+        auto startIsvedimasVarg = chrono::high_resolution_clock::now();
+        RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+
+        auto endIsvedimasVarg = chrono::high_resolution_clock::now();
+        chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
+        M5[t] = durationIsvedimasVarg.count();
+        }
+
+    //double testas5 = Tarpinis(M5,testuSkaicius);
+    double testas5 = vidutiniai(M5,testuSkaicius);
+    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << testas5 << endl;
+
+        for (int t=0; t < testuSkaicius; t++){
+
+        auto startIsvedimasKiet = chrono::high_resolution_clock::now();
+        RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
+
+        auto endIsvedimasKiet = chrono::high_resolution_clock::now();
+        chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
+        M6[t] = durationIsvedimasKiet.count();
+        }
+
+    //double testas6 = Tarpinis(M6,testuSkaicius);
+    double testas6 = vidutiniai(M6,testuSkaicius);
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << testas6 << endl;
     }
 
     else {
     RasymasIRezultatuFaila("rezultatai1.txt", Pasirinkimas, grupe);
     }
 
+    double FinalinisLaikas = finalinis(M2,M3,M4,M5,M6,testuSkaicius);
+    matavimai <<endl<< "Vidutinis " << StudSkaicius <<" irasu testo laikas, atlikus "<< testuSkaicius <<" testus: "<<FinalinisLaikas<< endl;
     matavimai << "-------------------------------------------------------------------" << endl << endl;
     matavimai.close();
+
+    cout<<"Matavimai ir failai paruosti"<<endl;
 
     return 0;
 }
