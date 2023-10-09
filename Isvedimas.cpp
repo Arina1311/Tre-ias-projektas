@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 
 void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, const vector<Studentas>& grupe) {
     ofstream output(failoPavadinimas); // Kuriame nauja faila
@@ -20,10 +21,9 @@ void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, c
         }
 
         output.close(); // Uždarome
-        cout << "Rezultatai paruošti faile" << endl;
     } catch (const runtime_error& e) {
         cerr << e.what() << endl;
-    }
+    } 
 }
 
 
@@ -60,7 +60,6 @@ void KurimasDuomenu(int &StudSkaicius, int &NDk) {
         }
     }
     outputFile.close();
-    cout << "Sugeneruotas " << StudSkaicius << " studentu duomenu failas " << fileName << endl;
 }
 
 
