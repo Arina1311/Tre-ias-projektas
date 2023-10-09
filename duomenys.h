@@ -20,5 +20,8 @@ double GalutinisMediana(double mediana, int egzaminas);
 
 bool palygintiPagalPavarde(const Studentas &a, const Studentas &b);
 bool palygintiPagalVarda(const Studentas &a, const Studentas &b);
+//double Tarpinis (double M[], int k);
+double vidutiniai (double M[], int k);
+double finalinis (double A[], double B[], double C[], double D[], double E[], int testavimask);
 
 #endif 
