@@ -2,13 +2,14 @@
 #include <fstream>
 #include <numeric>
 #include <cstdlib> 
+#include <random>
 #include "duomenys.h"
 #include "FailoNuskaitymas.h"
 #include "Isvedimas.h"
 
 int main() {
     Studentas Laikinas; 
-    vector<Studentas> grupe;
+    list<Studentas> grupe; 
     int StudentuSkaicius;
     char Pasirinkimas;
     int StudSkaicius, NDk;
@@ -16,13 +17,16 @@ int main() {
     char parinktis, generavimas;
     bool tinkamaParinktis = false; // Sukuriame kintamąjį, kuris žymės, ar parinktis tinkama
 
-    ofstream matavimai("matavimai.txt", std::ios::app);
+    ofstream matavimai("matavimai2.txt", std::ios::app);
+    matavimai << fixed;
 
     int testuSkaicius = 5;
     double M1[testuSkaicius], M2[testuSkaicius],  M3[testuSkaicius],  M4[testuSkaicius],  M5[testuSkaicius],  M6[testuSkaicius];
 
+    cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
+    cin >> Pasirinkimas;
    
-    cout << "Ar norite sugeneruoti atsitiktinius studentu duomenys (T/N): ";
+    cout << "Ar norite sugeneruotu atsitiktinius studentu duomenys (T/N): ";
     cin >> generavimas;
     if (generavimas == 'T' || generavimas == 't') {
         cout << "Iveskite kiek duomenu norite sugeneruoti: ";
@@ -32,19 +36,14 @@ int main() {
 
         matavimai << StudSkaicius << " duomenu failas:" << endl;
 
-        for (int t=0; t < testuSkaicius; t++){
         auto start = chrono::high_resolution_clock::now();
         KurimasDuomenu(StudSkaicius, NDk);
 
         auto end = std::chrono::high_resolution_clock::now();
-        chrono::duration<double> duration = end - start;
-        M1[t] = duration.count();
-        }
-
-        //double testas1 = Tarpinis(M1,testuSkaicius);
-        double testas1 = vidutiniai(M1,testuSkaicius);
+        chrono::duration<double> duration = end - start; //Chrono bibliotekos tipas, skirtas saugoti laiko trukmę su slankiojo kablelio skaičiais
+       
         // Atspausdiname laiko trukmę
-        cout << "- Failo su "<< StudSkaicius <<" duomenimis kurimo trukmė: " << testas1 << endl;
+        cout << "- Failo su "<< StudSkaicius <<" duomenimis kurimo trukmė: " << setprecision(10) << duration.count() << endl; //duration.count() - grazina laika sekundemis
         }
 
     while (!tinkamaParinktis) {
@@ -60,6 +59,11 @@ int main() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Valome įvestį
     }
+
+        int p;
+        cout << "Iveskite kiek faile duomenu: ";
+        cin >> p;
+        matavimai << p << " duomenu failas:" << endl;
     }
 
     //pasirinkimas is failo ar ranka
@@ -100,31 +104,26 @@ int main() {
             cout << "Iveskite varda ir pavarde studento: ";
             cin >> Laikinas.Vardas >> Laikinas.Pavarde;
 
-            Laikinas.Vidurkis = 0.0;
-            Laikinas.Mediana = 0.0;
-
             // Generuojame atsitiktinius namų darbų balus
-            int minBalas = 1; 
-            int maxBalas = 10; 
+            int minBalas = 1;
+            int maxBalas = 10;
             int baluSkaicius;
-            cout << "Iveskite kiek norite pazymiu sugeneruoti: "; 
+            cout << "Iveskite kiek norite pazymiu sugeneruoti: ";
             cin >> baluSkaicius;
 
-            for (int j = 0; j < baluSkaicius; j++) 
-            {
-                int atsitiktinisBalas = rand() % (maxBalas - minBalas + 1) + minBalas;
+            mt19937 mt(1729);  
+            uniform_int_distribution<int> dist(minBalas, maxBalas);
+
+            for (int j = 0; j < baluSkaicius; j++) {
+                int atsitiktinisBalas = dist(mt);
                 Laikinas.NamuDarbai.push_back(atsitiktinisBalas);
             }
 
             // Generuojame atsitiktinį egzamino balą
-            Laikinas.Egzaminas = rand() % (maxBalas - minBalas + 1) + minBalas;
+            int egzaminoBalas = dist(mt);
+            Laikinas.Egzaminas = egzaminoBalas; 
 
-            // Skaiciuojame galutini vidurkis
-            Laikinas.Vidurkis = GalutinisVidurkis(accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0), Laikinas.NamuDarbai, Laikinas.Egzaminas);
-
-            //Mediana
-            double TarpineMediana = Mediana(Laikinas.NamuDarbai);
-            Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
+            Laikinas.Pazymys = GalutinisPazymis(Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
 
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
@@ -136,10 +135,6 @@ int main() {
             {
             cout << "Iveskite varda ir pavarde studento: ";
             cin >> Laikinas.Vardas >> Laikinas.Pavarde;
-
-            Laikinas.Vidurkis = 0.0;
-            Laikinas.Mediana = 0.0;
-
             cin.ignore();
 
             while (true) {
@@ -173,12 +168,7 @@ int main() {
             cout << "Iveskite egzamino pazymi: ";
             cin >> Laikinas.Egzaminas;
 
-            // Skaiciuojame galutini vidurkis
-            Laikinas.Vidurkis = GalutinisVidurkis(accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0), Laikinas.NamuDarbai, Laikinas.Egzaminas);
-
-            //Mediana
-            double TarpineMediana = Mediana(Laikinas.NamuDarbai);
-            Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
+            Laikinas.Pazymys = GalutinisPazymis(Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
 
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
@@ -195,41 +185,51 @@ int main() {
         for (int t=0; t < testuSkaicius; t++){
         auto startNuskaitymas = chrono::high_resolution_clock::now();
         
-        grupe = SkaitytiDuomenisIsFailo(FileName);
+        grupe = SkaitytiDuomenisIsFailo(FileName, Pasirinkimas);
         
         auto endNuskaitymas = chrono::high_resolution_clock::now();
         chrono::duration<double> durationNuskaitymas = endNuskaitymas - startNuskaitymas;
         M2[t] = durationNuskaitymas.count();
         }
 
-    //double testas2 = Tarpinis(M2,testuSkaicius);
     double testas2 = vidutiniai(M2,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis nuskaitymo trukme: " << testas2 << endl;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis nuskaitymo trukme: " << setprecision(10) << testas2 << endl;
     }
 
-    //Palyginimas ir rusiavimas pagal pavarde ir varda, testavimas
+    //Palyginimas ir rusiavimas, testavimas
+        int kriterijus;
+        cout << "Irasykite numeri pagal ka norite rusiuoti (1 - Vardas, 2 - Pavarde, 3 - Pazymys): ";
+        cin >> kriterijus;
+
         for (int t=0; t < testuSkaicius; t++){
         auto startSort = chrono::high_resolution_clock::now();
-
-        sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
-        stable_sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
+        
+            switch (kriterijus)
+            {
+            case 1:
+                grupe.sort(palygintiPagalVarda);
+                break;
+            case 2:
+                 grupe.sort(palygintiPagalPavarde);
+                break;
+            case 3:
+                 grupe.sort(palygintiPagalPazymi);
+                break;
+            default:
+            cerr << "Neteisingas rusiavimo kriterijus: " << kriterijus << endl;
+            return 1;
+            }
 
         auto endSort = chrono::high_resolution_clock::now();
         chrono::duration<double> durationSort = endSort - startSort;
         M3[t] = durationSort.count();
         }
 
-    //double testas3 = Tarpinis(M3,testuSkaicius);
     double testas3 = vidutiniai(M3,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << testas3 << endl;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << setprecision(10)<< testas3 << endl;
 
-
-    //Leidziame vartotojui pasirinkti norima skaiciavimo buda
-    cout << "Noredami apskaiciuoti vidurki iveskite (V) ar mediana (M) ";
-    cin >> Pasirinkimas;
-
-    vector<Studentas> vargsiukai;
-    vector<Studentas> kietuoliai;
+    list<Studentas> vargsiukai;
+    list<Studentas> kietuoliai;
 
     cout << "Ar norite paskirstyti studentus pagal pazymius? (T/N): ";
     char ats;
@@ -240,7 +240,7 @@ int main() {
     auto startRusiavimas = chrono::high_resolution_clock::now();
 
     for (const Studentas &studentas : grupe) {
-    if (studentas.Vidurkis < 5.0) {
+    if (studentas.Pazymys < 5.0) {
         vargsiukai.push_back(studentas); 
     } else {
         kietuoliai.push_back(studentas); 
@@ -253,9 +253,8 @@ int main() {
         M4[t] = durationRusiavimas.count();
         }
     
-    //double testas4 = Tarpinis(M4,testuSkaicius);
     double testas4 = vidutiniai(M4,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << testas4 << endl;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << setprecision(10) << testas4 << endl;
 
     // Pasiskirstymo testavimas
         for (int t=0; t < testuSkaicius; t++){
@@ -268,9 +267,9 @@ int main() {
         M5[t] = durationIsvedimasVarg.count();
         }
 
-    //double testas5 = Tarpinis(M5,testuSkaicius);
+   
     double testas5 = vidutiniai(M5,testuSkaicius);
-    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << testas5 << endl;
+    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << setprecision(10) << testas5 << endl;
 
         for (int t=0; t < testuSkaicius; t++){
 
@@ -282,9 +281,8 @@ int main() {
         M6[t] = durationIsvedimasKiet.count();
         }
 
-    //double testas6 = Tarpinis(M6,testuSkaicius);
     double testas6 = vidutiniai(M6,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << testas6 << endl;
+    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << setprecision(10) << testas6 << endl;
     }
 
     else {
