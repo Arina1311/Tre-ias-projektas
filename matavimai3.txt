@@ -1,0 +1,45 @@
+- Failo su 0 duomenimis nuskaitymo trukme: 0.0078732416
+- Failo su 0 duomenimis, studentu rusiavimo trukme, su funkcija sort(): 0.0012682998
+- Failo su 0 duomenimis, studentu dalijimo i dvi grupes trukme: 0.0016464666
+- Failo su 0 duomenimis, isvedimo i vargsiuku faila trukme: 0.0022849418
+- Failo su 0 duomenimis, isvedimo i ketuoliu faila trukme: 0.0022435586
+
+Vidutinis 0 irasu testo laikas, atlikus 5 testus: 0.0153165084
+-------------------------------------------------------------------
+
+- Failo su 0 duomenimis nuskaitymo trukme: 0.0376591996
+- Failo su 0 duomenimis, studentu rusiavimo trukme, su funkcija sort(): 0.0102328500
+- Failo su 0 duomenimis, studentu dalijimo i dvi grupes trukme: 0.0190255836
+- Failo su 0 duomenimis, isvedimo i vargsiuku faila trukme: 0.0107550750
+- Failo su 0 duomenimis, isvedimo i ketuoliu faila trukme: 0.0098958750
+
+Vidutinis 0 irasu testo laikas, atlikus 5 testus: 0.0875685832
+-------------------------------------------------------------------
+
+- Failo su 0 duomenimis nuskaitymo trukme: 0.3282867916
+- Failo su 0 duomenimis, studentu rusiavimo trukme, su funkcija sort(): 0.0610092832
+- Failo su 0 duomenimis, studentu dalijimo i dvi grupes trukme: 0.0826260252
+- Failo su 0 duomenimis, isvedimo i vargsiuku faila trukme: 0.0680612998
+- Failo su 0 duomenimis, isvedimo i ketuoliu faila trukme: 0.0947216328
+
+Vidutinis 0 irasu testo laikas, atlikus 5 testus: 0.6347050326
+-------------------------------------------------------------------
+
+- Failo su 0 duomenimis nuskaitymo trukme: 3.2212511502
+- Failo su 0 duomenimis, studentu rusiavimo trukme, su funkcija sort(): 0.6408057002
+- Failo su 0 duomenimis, studentu dalijimo i dvi grupes trukme: 0.6150955580
+- Failo su 0 duomenimis, isvedimo i vargsiuku faila trukme: 0.6864398918
+- Failo su 0 duomenimis, isvedimo i ketuoliu faila trukme: 0.9583054418
+
+Vidutinis 0 irasu testo laikas, atlikus 5 testus: 6.1218977420
+-------------------------------------------------------------------
+
+- Failo su 0 duomenimis nuskaitymo trukme: 34.9440183084
+- Failo su 0 duomenimis, studentu rusiavimo trukme, su funkcija sort(): 7.3071770750
+- Failo su 0 duomenimis, studentu dalijimo i dvi grupes trukme: 5.7703551832
+- Failo su 0 duomenimis, isvedimo i vargsiuku faila trukme: 7.9438236166
+- Failo su 0 duomenimis, isvedimo i ketuoliu faila trukme: 11.7041252332
+
+Vidutinis 0 irasu testo laikas, atlikus 5 testus: 67.6694994164
+-------------------------------------------------------------------
+
