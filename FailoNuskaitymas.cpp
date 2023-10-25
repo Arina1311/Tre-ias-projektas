@@ -5,8 +5,8 @@
 #include <numeric> 
 #include <iostream>
 
-vector<Studentas> SkaitytiDuomenisIsFailo(const string& fileName) {
-    vector<Studentas> grupe;
+list<Studentas> SkaitytiDuomenisIsFailo(const string& fileName, char Pasirinkimas) {
+    list<Studentas> grupe;
     ifstream input(fileName); 
 
     try {
@@ -19,7 +19,7 @@ vector<Studentas> SkaitytiDuomenisIsFailo(const string& fileName) {
         try {
             if (getline(input, header)) {  //paimame eilute bandome ja irasyti i header
                 istringstream iss(header); //padarome is header srauta
-                vector<string> stulpeliai; 
+                list<string> stulpeliai; 
                 string pav; //saugomas kiekvienas išskirtas žodis iš header
 
                 while (iss >> pav) {   //nuskaito kiekvieną žodį iš header, naudojant iss srautą
@@ -46,12 +46,7 @@ vector<Studentas> SkaitytiDuomenisIsFailo(const string& fileName) {
             }
             input >> Laikinas.Egzaminas;
 
-            int Nsuma = accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0);
-
-            Laikinas.Vidurkis = GalutinisVidurkis(Nsuma, Laikinas.NamuDarbai, Laikinas.Egzaminas);
-
-            double TarpineMediana = Mediana(Laikinas.NamuDarbai);
-            Laikinas.Mediana = GalutinisMediana(TarpineMediana, Laikinas.Egzaminas);
+            Laikinas.Pazymys = GalutinisPazymis(Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
 
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
