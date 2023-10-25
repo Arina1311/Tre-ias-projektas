@@ -1,10 +1,10 @@
 #ifndef ISVEDIMAS_H
 #define ISVEDIMAS_H
 
-#include <vector>
+#include <list>
 #include "duomenys.h"
 #include <string>
 
-void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, const vector<Studentas>& grupe);
+void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, const list<Studentas>& grupe);
 void KurimasDuomenu(int &Skaicius, int &Kiekis);
 #endif
