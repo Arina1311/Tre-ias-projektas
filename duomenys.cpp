@@ -2,25 +2,43 @@
 #include "duomenys.h"
 #include <algorithm>
 
-
-
-float GalutinisVidurkis(double suma, vector<int> duomenys, int egzaminas) {
+float GalutinisPazymis(list<int>& duomenys, int egzaminas, char pasirinkimas) {
     int kiekis = duomenys.size();
-    return 0.4 * (suma / kiekis) + 0.6 * egzaminas;
+    float galutinis;
+    
+    if (pasirinkimas == 'V' || pasirinkimas == 'v') {
+        // kitaip sudedame elementus
+        double sumaDuomenu = 0.0;
+        for (list<int>::iterator it = duomenys.begin(); it != duomenys.end(); ++it) {
+            sumaDuomenu += *it;
+        }
+        galutinis = 0.4 * (sumaDuomenu / kiekis) + 0.6 * egzaminas;
+
+    } else {
+        list<int> duomenysKopija = duomenys;
+        duomenysKopija.sort();
+        int vid = kiekis / 2;
+
+        list<int>::iterator it = duomenysKopija.begin(); // iteratoris it, rodo į pradžią.
+        advance(it, vid); //Perstumiu iteratorių it per vid pozicijų, dabar jis rodo į vidurio elementą.
+
+        if (kiekis % 2 == 0) {
+            // If the list has an even number of elements, calculate the median
+            int pirmas = *prev(it); //pirmas vid elem
+            int antras = *it;  //antras vid elem
+            galutinis = 0.4 * (pirmas + antras) / 2.0 + 0.6 * egzaminas;
+
+        } else {
+            galutinis = 0.4 * *it + 0.6 * egzaminas;
+        }
+    }
+
+    return galutinis;
 }
 
-double Mediana(vector<int> duomenys) {
-    sort(duomenys.begin(), duomenys.end());
-    int dydis = duomenys.size();
-    int vid = dydis / 2;
-    if (dydis % 2 == 0)
-        return (duomenys[vid - 1] + duomenys[vid]) / 2.0;
-    else
-        return duomenys[vid];
-}
 
-double GalutinisMediana(double mediana, int egzaminas) {
-    return 0.4 * mediana + 0.6 * egzaminas;
+bool palygintiPagalPazymi(const Studentas &a, const Studentas &b) {
+    return a.Pazymys < b.Pazymys;
 }
 
 bool palygintiPagalPavarde(const Studentas &a, const Studentas &b) {
@@ -30,18 +48,6 @@ bool palygintiPagalPavarde(const Studentas &a, const Studentas &b) {
 bool palygintiPagalVarda(const Studentas &a, const Studentas &b) {
     return a.Vardas < b.Vardas;
 }
-
-/*double Tarpinis (double M[], int k)
-{
-    double geriausias = M[0];
-    for (int i = 1; i < k; i++) {
-        if (M[i] < geriausias) {
-            geriausias = M[i];
-        }
-    }
-    return geriausias;
-}
-*/
 
 double vidutiniai (double M[], int k)
 {
