@@ -1,7 +1,7 @@
 # Pirmas Projektas
-**Testavimo aprašymas:**
+**Testavimų aprašymas:**
 
-Testavimas atliekamas su std::vector, gauname tokią lentelę ištyrę penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
+Testavimas atliekamas su **std::vector**, lentelė sudaryta pagal penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
 
 | Testavimas/ Failas         |      1000     |     10000    |    100000    |    1000000   |  10000000  |
 |----------------------------|:-------------:|:------------:|:------------:|:------------:|:----------:|
@@ -12,7 +12,7 @@ Testavimas atliekamas su std::vector, gauname tokią lentelę ištyrę penkis su
 | Rašymas į kietuolių failą  | 0.00224 s. |  0.00989 s. |  0.09472 s.  |  0.95830 s. | 11.70412 s. |
 | Bendras                    |  0.01532 s. |  0.08756 s. |  0.63471 s.  |  6.12189 s.  | 67.66949 s. |
 
-Testavimas atliekamas su std::list, gauname tokią lentelę ištyrę tuos pačius penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
+Testavimas atliekamas su **std::list**, lentelė sudaryta pagal tuos pačius penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
 
 | Testavimas/ Failas         |      1000     |     10000    |    100000    |    1000000   |  10000000  |
 |----------------------------|:-------------:|:------------:|:------------:|:------------:|:----------:|
@@ -23,7 +23,19 @@ Testavimas atliekamas su std::list, gauname tokią lentelę ištyrę tuos pačiu
 | Rašymas į kietuolių failą  | 0.00285 s. |  0.00977 s. |  0.09464 s.  |  0.99026 s. | 12.67260 s. |
 | Bendras                    |  0.01719 s. |  0.08240 s. |  0.61712 s.  |  6.28862 s.  | 70.16782 s. |
 
-Iš lentelių matome, kad std::vector ir std::list testavimų laikai sugeneruotų failų yra panašūs, su 10000 ir 100000 duomenų kiekiu std::list dirba greičiau, o std::vector dirba greičiau su 1000, 1000000 ir 10000000. Galime daryti išvada, kad nežymiai greičiau dirba std::vector.
+**Atskirų programos funkcijų veikimo laikas su std::vector ir std::list:**
+- Studentų rūšiavimas į dvi grupes/kategorijas: nežymiai greičiau programa paskirsto į dvi grupes duomenis su **std::vector** duomenų tipu,  kai turime didelį duomenų kiekį.
+- Duomenų įrašymas į failus: nežymiai greičiau programa įrašo duomenis į failus grupes su **std::vector** duomenų tipu, kai turime didelį duomenų kiekį.
+
+Iš lentelių matome, kad std::vector ir std::list testavimų laikai sugeneruotų failų yra panašūs, su 10000 ir 100000 duomenų kiekiu std::list dirba greičiau, o std::vector dirba greičiau su 1000, 1000000 ir 10000000. 
+
+**Bendra išvada:**
+Galime daryti **išvada**, kad nežymiai **greičiau** dirba **std::vector**, nes didesnius duomenų kiekius programa apdoroja greičiau. Didžiausias skirtumas (sekundėmis) matomas kai programa apdoroja 10000000 duomenų failą, skirtumas yra ~ 2.5 sek. 
+
+**Testavimo sistemos parametrai:**
+**CPU:** Apple M2, 8 Core CPU
+**RAM:** 8 Gb
+**HDD:** 256Gb SSD
 
 
 
