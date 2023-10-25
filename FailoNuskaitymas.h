@@ -1,10 +1,10 @@
 #ifndef FAILONUSKAITYMAS_H
 #define FAILONUSKAITYMAS_H
 
-#include <vector>
+#include <list>
 #include <string>
 #include "duomenys.h"
 
-vector<Studentas> SkaitytiDuomenisIsFailo(const string& fileName);
+list<Studentas> SkaitytiDuomenisIsFailo(const string& fileName, char Pasirinkimas);
 
 #endif 
