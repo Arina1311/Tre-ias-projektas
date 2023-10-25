@@ -1,6 +1,6 @@
-# Pirmas Projektas
-**Testavimų aprašymas:**
+# Pirmas Projektas, Testavimų aprašymas
 
+## std::vector
 Testavimas atliekamas su **std::vector**, lentelė sudaryta pagal penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
 
 | Testavimas/ Failas         |      1000     |     10000    |    100000    |    1000000   |  10000000  |
@@ -12,6 +12,7 @@ Testavimas atliekamas su **std::vector**, lentelė sudaryta pagal penkis sugener
 | Rašymas į kietuolių failą  | 0.00224 s. |  0.00989 s. |  0.09472 s.  |  0.95830 s. | 11.70412 s. |
 | Bendras                    |  0.01532 s. |  0.08756 s. |  0.63471 s.  |  6.12189 s.  | 67.66949 s. |
 
+## std::list
 Testavimas atliekamas su **std::list**, lentelė sudaryta pagal tuos pačius penkis sugeneruotus failus: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
 
 | Testavimas/ Failas         |      1000     |     10000    |    100000    |    1000000   |  10000000  |
@@ -29,13 +30,13 @@ Testavimas atliekamas su **std::list**, lentelė sudaryta pagal tuos pačius pen
 
 Iš lentelių matome, kad std::vector ir std::list testavimų laikai sugeneruotų failų yra panašūs, su 10000 ir 100000 duomenų kiekiu std::list dirba greičiau, o std::vector dirba greičiau su 1000, 1000000 ir 10000000. 
 
-**Bendra išvada:**
+**Bendra išvada:** <br />
 Galime daryti **išvada**, kad nežymiai **greičiau** dirba **std::vector**, nes didesnius duomenų kiekius programa apdoroja greičiau. Didžiausias skirtumas (sekundėmis) matomas kai programa apdoroja 10000000 duomenų failą, skirtumas yra ~ 2.5 sek. 
 
-**Testavimo sistemos parametrai:**
-**CPU:** Apple M2, 8 Core CPU
-**RAM:** 8 Gb
-**HDD:** 256Gb SSD
+**Testavimo sistemos parametrai:** <br />
+**CPU:** Apple M2, 8 Core CPU <br />
+**RAM:** 8 Gb <br />
+**HDD:** 256Gb SSD <br />
 
 
 
