@@ -2,9 +2,10 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <random>
 #include <chrono>
 
-void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, const vector<Studentas>& grupe) {
+void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, const list<Studentas>& grupe) {
     ofstream output(failoPavadinimas); // Kuriame nauja faila
 
     try {
@@ -17,7 +18,7 @@ void RasymasIRezultatuFaila(const string& failoPavadinimas, char Pasirinkimas, c
         output << "---------------------" << "---------------------" << "---------------------" << endl;
 
         for (const auto& studentas : grupe) {
-            output << left << setw(15) << studentas.Vardas << setw(15) << studentas.Pavarde << setw(20) << (Pasirinkimas == 'V' ? studentas.Vidurkis : studentas.Mediana) <<endl;
+            output << left << setw(15) << studentas.Vardas << setw(15) << studentas.Pavarde << setw(20) << studentas.Pazymys <<endl;
         }
 
         output.close(); // Uždarome
@@ -44,15 +45,18 @@ void KurimasDuomenu(int &StudSkaicius, int &NDk) {
     }
     outputFile << right << setw(10) << "Egz." << endl;
     
+    mt19937 mt(1729);  
+    uniform_int_distribution<int> dist(1, 10);
+
     for (int j = 1; j <= StudSkaicius; j++) {
         outputFile << left << setw(20) << "Vardas" + to_string(j) << right << setw(20) << "Pavarde" + to_string(j);
 
         for (int k = 0; k < NDk; k++) {
-            int atsitiktinisBalas = rand() % 10 + 1; // Generuojame atsitiktinį balą nuo 1 iki 10
+            int atsitiktinisBalas = dist(mt);
             outputFile << right << setw(10) << atsitiktinisBalas;
         }
 
-        int atsitiktinisEgzaminas = rand() % 10 + 1; // Generuojame atsitiktinį egzamino balą nuo 1 iki 10
+        int atsitiktinisEgzaminas = dist(mt); 
         outputFile << right << setw(10) << atsitiktinisEgzaminas;
 
         if (j < StudSkaicius) {
