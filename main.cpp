@@ -59,11 +59,6 @@ int main() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Valome įvestį
     }
-
-        int p;
-        cout << "Iveskite kiek faile duomenu: ";
-        cin >> p;
-        matavimai << p << " duomenu failas:" << endl;
     }
 
     //pasirinkimas is failo ar ranka
@@ -173,6 +168,12 @@ int main() {
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
             }
+            cout <<"--------------------------------------------------"<<endl;
+           
+            for (const auto& a : grupe) {
+            cout <<left << "Objekto saugojimo atmintyje adresas: "<< setw(8) <<a.Vardas << setw(8) << a.Pavarde <<  ": "<< &a <<endl;
+        }
+            cout <<"--------------------------------------------------"<<endl;
         }
     }
 
