@@ -336,7 +336,7 @@ int main() {
             }
                 break;
 
-            //3 strategija
+            // 3 strategija
                 case 3:
             {
 
