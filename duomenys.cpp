@@ -9,9 +9,10 @@ float GalutinisPazymis(list<int>& duomenys, int egzaminas, char pasirinkimas) {
     if (pasirinkimas == 'V' || pasirinkimas == 'v') {
         // kitaip sudedame elementus
         double sumaDuomenu = 0.0;
-        for (list<int>::iterator it = duomenys.begin(); it != duomenys.end(); ++it) {
-            sumaDuomenu += *it;
-        }
+        
+        for (auto &a:duomenys)
+            sumaDuomenu+=a;
+
         galutinis = 0.4 * (sumaDuomenu / kiekis) + 0.6 * egzaminas;
 
     } else {
@@ -73,4 +74,9 @@ double finalinis(double A[], double B[], double C[], double D[], double E[], int
     double vidurkis = suma / testavimask;
     return vidurkis;
 }
+
+bool isVargsiukas(const Studentas &studentas) {
+    return studentas.Pazymys < 5.0;
+}
+
 
