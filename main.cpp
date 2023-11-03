@@ -241,14 +241,11 @@ int main() {
             {
             //1 strategija
             case 1:
-
                 {
-                for (int t=0; t < testuSkaicius; t++){
-                
-                auto startRusiavimas = chrono::high_resolution_clock::now();
-
                 vector<Studentas> vargsiukai;
                 vector<Studentas> kietuoliai;
+
+                auto startRusiavimas = chrono::high_resolution_clock::now();
 
                 for (const Studentas &studentas : grupe) {
                     if (studentas.Pazymys < 5.0) {
@@ -261,11 +258,9 @@ int main() {
 
                 auto endRusiavimas = chrono::high_resolution_clock::now();
                 chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
-                M4[t] = durationRusiavimas.count();
-            }
-                
-                double testas4 = vidutiniai(M4,testuSkaicius);
-                matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << setprecision(10) << testas4 << endl;
+                float M4 = durationRusiavimas.count();
+        
+                matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << setprecision(10) << M4 << endl;
 
                 for (int t=0; t < testuSkaicius; t++){
                     auto startIsvedimasVarg = chrono::high_resolution_clock::now();
@@ -302,9 +297,8 @@ int main() {
                     for (int i = 0; i < grupe.size();) {
                         if (grupe[i].Pazymys < 5.0) 
                         {
-                            vargsiukai.push_back(grupe[i]); cout<<vargsiukai.size()<<"-"<<endl;
+                            vargsiukai.push_back(grupe[i]); 
                             grupe.erase(grupe.begin() + i); // Ištriname iš bendro konteinerio 
-                            cout<<vargsiukai.size()<<endl;
                         } else {
                             i++; // Tik padidiname, jei nenustatome vargšiuko
                         }
@@ -312,9 +306,9 @@ int main() {
 
                     auto endRusiavimas = chrono::high_resolution_clock::now();
                     chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
-                    float M4 = durationRusiavimas.count();
+                    float testas42 = durationRusiavimas.count();
             
-                matavimai << "- Failo su " << StudSkaicius << " duomenimis, studentų dalijimo į dvi grupes trukmė: " << setprecision(10) << M4 << endl;
+                matavimai << "- Failo su " << StudSkaicius << " duomenimis, studentų dalijimo į dvi grupes trukmė: " << setprecision(10) << testas42 << endl;
 
                 for (int t = 0; t < testuSkaicius; t++) {
                     auto startIsvedimasVarg = chrono::high_resolution_clock::now();
