@@ -9,7 +9,7 @@
 
 int main() {
     Studentas Laikinas; 
-    list<Studentas> grupe; 
+    vector<Studentas> grupe;
     int StudentuSkaicius;
     char Pasirinkimas;
     int StudSkaicius, NDk;
@@ -17,7 +17,7 @@ int main() {
     char parinktis, generavimas;
     bool tinkamaParinktis = false; // Sukuriame kintamąjį, kuris žymės, ar parinktis tinkama
 
-    ofstream matavimai("matavimai2.txt", std::ios::app);
+    ofstream matavimai("matavimai3.txt", std::ios::app);
     matavimai << fixed;
 
     int testuSkaicius = 5;
@@ -118,7 +118,7 @@ int main() {
             int egzaminoBalas = dist(mt);
             Laikinas.Egzaminas = egzaminoBalas; 
 
-            Laikinas.Pazymys = GalutinisPazymis(Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
+            Laikinas.Pazymys = GalutinisPazymis(accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0), Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
 
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
@@ -163,17 +163,11 @@ int main() {
             cout << "Iveskite egzamino pazymi: ";
             cin >> Laikinas.Egzaminas;
 
-            Laikinas.Pazymys = GalutinisPazymis(Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
+            Laikinas.Pazymys = GalutinisPazymis(accumulate(Laikinas.NamuDarbai.begin(), Laikinas.NamuDarbai.end(), 0), Laikinas.NamuDarbai, Laikinas.Egzaminas, Pasirinkimas);
 
             grupe.push_back(Laikinas);
             Laikinas.NamuDarbai.clear();
             }
-            cout <<"--------------------------------------------------"<<endl;
-           
-            for (const auto& a : grupe) {
-            cout <<left << "Objekto saugojimo atmintyje adresas: "<< setw(8) <<a.Vardas << setw(8) << a.Pavarde <<  ": "<< &a <<endl;
-        }
-            cout <<"--------------------------------------------------"<<endl;
         }
     }
 
@@ -208,13 +202,13 @@ int main() {
             switch (kriterijus)
             {
             case 1:
-                grupe.sort(palygintiPagalVarda);
+                sort(grupe.begin(), grupe.end(), palygintiPagalVarda);
                 break;
             case 2:
-                 grupe.sort(palygintiPagalPavarde);
+                sort(grupe.begin(), grupe.end(), palygintiPagalPavarde);
                 break;
             case 3:
-                 grupe.sort(palygintiPagalPazymi);
+                sort(grupe.begin(), grupe.end(), palygintiPagalPazymi);
                 break;
             default:
             cerr << "Neteisingas rusiavimo kriterijus: " << kriterijus << endl;
@@ -229,8 +223,8 @@ int main() {
     double testas3 = vidutiniai(M3,testuSkaicius);
     matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu rusiavimo trukme, su funkcija sort(): " << setprecision(10)<< testas3 << endl;
 
-    list<Studentas> vargsiukai;
-    list<Studentas> kietuoliai;
+    vector<Studentas> vargsiukai;
+    vector<Studentas> kietuoliai;
 
     cout << "Ar norite paskirstyti studentus pagal pazymius? (T/N): ";
     char ats;
@@ -238,56 +232,172 @@ int main() {
 
     if (ats == 'T' || ats == 't'){
     // Rusiavimo testavimas
-    auto startRusiavimas = chrono::high_resolution_clock::now();
 
-    for (const Studentas &studentas : grupe) {
-    if (studentas.Pazymys < 5.0) {
-        vargsiukai.push_back(studentas); 
-    } else {
-        kietuoliai.push_back(studentas); 
-    }
-    }
-        for (int t=0; t < testuSkaicius; t++){
-
-        auto endRusiavimas = chrono::high_resolution_clock::now();
-        chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
-        M4[t] = durationRusiavimas.count();
-        }
+    cout <<"Pasirinkite strategija 1, 2 arba 3: ";
+    int s;
+    cin >> s;
     
-    double testas4 = vidutiniai(M4,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << setprecision(10) << testas4 << endl;
+    switch (s)
+            {
+            //1 strategija
+            case 1:
+                {
+                vector<Studentas> vargsiukai;
+                vector<Studentas> kietuoliai;
 
-    // Pasiskirstymo testavimas
-        for (int t=0; t < testuSkaicius; t++){
+                auto startRusiavimas = chrono::high_resolution_clock::now();
 
-        auto startIsvedimasVarg = chrono::high_resolution_clock::now();
-        RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+                for (const Studentas &studentas : grupe) {
+                    if (studentas.Pazymys < 5.0) {
+                        vargsiukai.push_back(studentas); 
+                    } 
+                    else {
+                        kietuoliai.push_back(studentas); 
+                    }
+                }
 
-        auto endIsvedimasVarg = chrono::high_resolution_clock::now();
-        chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
-        M5[t] = durationIsvedimasVarg.count();
-        }
+                auto endRusiavimas = chrono::high_resolution_clock::now();
+                chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
+                float M4 = durationRusiavimas.count();
+        
+                matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, studentu dalijimo i dvi grupes trukme: " << setprecision(10) << M4 << endl;
 
-   
-    double testas5 = vidutiniai(M5,testuSkaicius);
-    matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << setprecision(10) << testas5 << endl;
+                for (int t=0; t < testuSkaicius; t++){
+                    auto startIsvedimasVarg = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
 
-        for (int t=0; t < testuSkaicius; t++){
+                    auto endIsvedimasVarg = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
+                    M5[t] = durationIsvedimasVarg.count();
+                }
 
-        auto startIsvedimasKiet = chrono::high_resolution_clock::now();
-        RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
+                double testas5 = vidutiniai(M5,testuSkaicius);
+                matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << setprecision(10) << testas5 << endl;
 
-        auto endIsvedimasKiet = chrono::high_resolution_clock::now();
-        chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
-        M6[t] = durationIsvedimasKiet.count();
-        }
+                for (int t=0; t < testuSkaicius; t++){
+                    auto startIsvedimasKiet = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
 
-    double testas6 = vidutiniai(M6,testuSkaicius);
-    matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << setprecision(10) << testas6 << endl;
-    }
+                    auto endIsvedimasKiet = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
+                    M6[t] = durationIsvedimasKiet.count();
+                }
+
+                double testas6 = vidutiniai(M6,testuSkaicius);
+                matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << setprecision(10) << testas6 << endl;
+                }
+                break;
+
+            // 2 strategija
+            case 2:
+                {
+                    auto startRusiavimas = chrono::high_resolution_clock::now();
+                    vector<Studentas> vargsiukai;
+
+                    for (int i = 0; i < grupe.size();) {
+                        if (grupe[i].Pazymys < 5.0) 
+                        {
+                            vargsiukai.push_back(grupe[i]); 
+                            grupe.erase(grupe.begin() + i); // Ištriname iš bendro konteinerio 
+                        } else {
+                            i++; // Tik padidiname, jei nenustatome vargšiuko
+                        }
+                    }
+
+                    auto endRusiavimas = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
+                    float testas42 = durationRusiavimas.count();
+            
+                matavimai << "- Failo su " << StudSkaicius << " duomenimis, studentų dalijimo į dvi grupes trukmė: " << setprecision(10) << testas42 << endl;
+
+                for (int t = 0; t < testuSkaicius; t++) {
+                    auto startIsvedimasVarg = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+
+                    auto endIsvedimasVarg = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
+                    M5[t] = durationIsvedimasVarg.count();
+                }
+
+                double testas52 = vidutiniai(M5, testuSkaicius);
+                matavimai << "- Failo su " << StudSkaicius << " duomenimis, išvedimo į vargsiukų failą trukmė: " << setprecision(10) << testas52 << endl;
+
+                for (int t = 0; t < testuSkaicius; t++) {
+                    auto startIsvedimasKiet = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, grupe);
+
+                    auto endIsvedimasKiet = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
+                    M6[t] = durationIsvedimasKiet.count();
+                }
+
+                double testas62 = vidutiniai(M6, testuSkaicius);
+                matavimai << "- Failo su " << StudSkaicius << " duomenimis, išvedimo į kietuoliu failą trukmė: " << setprecision(10) << testas62 << endl;
+            }
+                break;
+
+            //3 strategija
+                case 3:
+            {
+          
+                vector<Studentas> vargsiukai;
+                vector<Studentas> kietuoliai;
+
+                auto startRusiavimas = chrono::high_resolution_clock::now();
+
+                // Naudojame std::partition, kad suskirstytume studentus pagal sąlyga
+                auto partitionPoint = partition(grupe.begin(), grupe.end(), isVargsiukas);
+
+                // Kopijuojame vargsiukus į atitinkamą vektorių
+                copy(grupe.begin(), partitionPoint, back_inserter(vargsiukai));
+
+                // Kopijuojame kietuolius į atitinkamą vektorių
+                copy(partitionPoint, grupe.end(), back_inserter(kietuoliai));
+
+                auto endRusiavimas = chrono::high_resolution_clock::now();
+                chrono::duration<double> durationRusiavimas = endRusiavimas - startRusiavimas;
+                float M43 = durationRusiavimas.count();
+
+                matavimai << "- Failo su " << StudSkaicius << " duomenimis, studentų dalijimo į dvi grupes trukmė: " << setprecision(10) << M43 << endl;
+
+                for (int t=0; t < testuSkaicius; t++){
+                    auto startIsvedimasVarg = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("vargsiukai.txt", Pasirinkimas, vargsiukai);
+
+                    auto endIsvedimasVarg = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasVarg = endIsvedimasVarg - startIsvedimasVarg;
+                    M5[t] = durationIsvedimasVarg.count();
+                }
+
+                double testas53 = vidutiniai(M5,testuSkaicius);
+                matavimai <<"- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i vargsiuku faila trukme: " << setprecision(10) << testas53 << endl;
+
+                for (int t=0; t < testuSkaicius; t++){
+                    auto startIsvedimasKiet = chrono::high_resolution_clock::now();
+                    RasymasIRezultatuFaila("kietuoliai.txt", Pasirinkimas, kietuoliai);
+
+                    auto endIsvedimasKiet = chrono::high_resolution_clock::now();
+                    chrono::duration<double> durationIsvedimasKiet = endIsvedimasKiet - startIsvedimasKiet;
+                    M6[t] = durationIsvedimasKiet.count();
+                }
+
+                double testas63 = vidutiniai(M6,testuSkaicius);
+                matavimai << "- Failo su "<< StudSkaicius <<" duomenimis, isvedimo i ketuoliu faila trukme: " << setprecision(10) << testas63 << endl;
+                }
+
+            break;
+
+                default:
+            cerr << "Neteisingas strategijos numeris: " << s << endl;
+            return 1;
+            }
+   }
 
     else {
-    RasymasIRezultatuFaila("rezultatai1.txt", Pasirinkimas, grupe);
+    if (parinktis == 'R' || parinktis == 'r')
+        RasymasIRezultatuFailaSav("rezultatai1.txt", Pasirinkimas, grupe);
+        else 
+        RasymasIRezultatuFaila("rezultatai1.txt", Pasirinkimas, grupe);
     }
 
     double FinalinisLaikas = finalinis(M2,M3,M4,M5,M6,testuSkaicius);
