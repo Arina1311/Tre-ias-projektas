@@ -32,3 +32,9 @@ Testavimas atliekamas su **std::list**,  lentelė sudaryta pagal penkis sugeneru
 
 ## **Bendra išvada:** <br />
 Galime daryti **išvada**, kad teisingos strategijos parinkimas ir jos efektyvumas priklauso nuo konteinerio, iš gautų testų matinee, kad pašalinimas ir kopijavimas į vieną konteinerį veikia greičiau std::list atveju, o duomenų paskirstymas į dvį grupes veiai efektyviau su std::vector.
+
+## **Nuorodą į nuotraukas su failų atminties naudojimu:** <br />
+https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=share_link
+
+## **Išvada apie atminties naudojimą:** <br />
+**std::vector** atveju greičiau veikia 1 ir 3 strategijos, tačiau jos sunaudoja daugiau atminties ~ 5,5 GB programos veikimo metu, atliekant paskirstymą į grupes, negu 2 strategija. Taip pat programa pradeda naudoti atmintį kai dirba su dideliais failais, kurie turi 1000000 ir 10000000 duomenų. **std::list** atveju atminties naudojimas yra panašus visų strategijų atveju, dirbant su dideliais duomenų kiekiais programa sunaudoja ~ 6 GB veikimo metu, nepriklausomai nuo to, kad greičiau programa veikia su 2 strategija.
