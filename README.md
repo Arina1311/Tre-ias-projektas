@@ -38,3 +38,29 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 
 ## **Išvada apie atminties naudojimą:** <br />
 **std::vector** atveju greičiau veikia 1 ir 3 strategijos, tačiau jos sunaudoja daugiau atminties ~ 5,5 GB programos veikimo metu, atliekant paskirstymą į grupes, negu 2 strategija. Taip pat programa pradeda naudoti atmintį kai dirba su dideliais failais, kurie turi 1000000 ir 10000000 duomenų. **std::list** atveju atminties naudojimas yra panašus visų strategijų atveju, dirbant su dideliais duomenų kiekiais programa sunaudoja ~ 6 GB veikimo metu, nepriklausomai nuo to, kad greičiau programa veikia su 2 strategija.
+
+# Naudojimo instrukcija: <br />
+## Programos diegimo instrukcija:
+- Iš GitHub repozitorijos parsisiųsti aplankalą **LIST_DIEGIMAS* ar **VECTOR_DIEGIMAS*, priklausomai nuo to, su kokiu konteineriu std::list arba std::vector norite dirbti;
+- Aplankalas turi visus reikalingus failus, peržiūrėti programos kodą galima atidarius aplankalą **src*, kur surašyti failai su plėtiniu **cpp**, ir aplankalą **include*, kuriame rasite **h** failus;
+- Paleisti programą reikalingas aplankalas **Debug*, kuriame rasite **exec** failą, kurį paleidus pasileis programa;
+- Reikalingus tekdtinius failus reikia patalpinti toje vietoje, kur programa pati sukuria failus (tai reikia patikrinti).
+
+## Programos paleidimo instrukcija:
+****Programos tikslas:** Programa apskaičiuoja studentų galutinius pažymius iš **n** skaičiaus namų darbų ir egzamino pažymio, pagal formulę **Galutinis pažymys = 0,6*egzaminas + 0,4*(namų darbų vidurkis)** pagal jūsų parinktą parametrą, vidurkį arba medianą, gali generuoti pati failus su pažymiais ir studentais, arba generuoti pažymius jau esamiems studentams, taip pat programa surušiuja pagal pasirinktą kriterijų studentus ir pagal poreikį paskirsto į dvį grupes (studentus kurie surinko teigiamą pažymį daugiau arba lygų 5 ir studentus, kurie gavo neigiamą pažymį.* <br> 
+
+- Pirmiausia programa paklausia pagal kurį parametrą **Vidurkis** arba **Mediana** jūs norite apskaičiuoti galutinį pažymį, jeigu norite skaičiuoti pagal vidurkį įveskite raidę "V" arba "v", jeigu pagal medianą įveskite raidę "M" arba "m";
+- Jeigu yra poreikis sugeneruoti atsitiktinius studentų duomenys naujuose failuose įveskite raidę "T", jeigu nereikia tai - "N". Jeigu jūsų atsakymas yra "Taip", tai programa paprašys įvesti kiek studentų duomenų jūs norite sugeneruoti ir kiek pažymių jums reikia sugeneruoti visiems studentams (**įvestis priima tik sveikuosius skaičius**), tokiu būdu programa sugeneruos failą "studentai_n.txt", kur n yra jūsų ųvestas studentų skaičius;
+- Kitame žingsnyje programa pasiūlo nuskaityti duoemys iš failo arba įvesti juos savarankiškai. Jei norite skaityti iš failo, tai įveskite "F" ir pasirinkite failą (su keliu) iš kurio skaitysite duomenis, jei norite įrašyti ranka, tai įveskite "R". Jei įvedimo metu pasirinkote įvesti ranka, tai galimi du variantai, įvesti studentų Vardą ir Pavardę ir savarankiškai įvesti namų darbų pažymius, kuriuos galite suvesti kiek reikia iki tol, kol paspausite du kartus ENTER bei egzamino pažymį, tam reikia paspausti "S". Jeigu turite studentų Vardą ir Pavardę bet norite sugeneruoti duomenys automatiškai kiekvienam iš jų, tai pasirinkite "S" ir kiekvienam studentui įrašykite kiek pažymių jam reikia sugeneruoti;
+- Toliau reikia pasirinkti pagal ką norite rūšiuoti galutinius duomenys, jei pagal Vardą tai paspauskite "1", jei pagal Pavardę - "2", pagal Pažymį - "3";
+- Jei norite paskirstyti studentus į dvi grupes pagal teigiamus ir neigiamus pažymius paspauskite "T", jei nereikia tai "N";
+- Toliau reikia pasirinkti pagal kokia strategiją norite paskirstyti galutinius duomenys, jei pagal 1 strategiją, paspauskite "1", jei pagal 2 strategiją - "2", 3 strategiją Pažymį - "3";
+- Programa baigta ir failai bus paruošti jūsų kompiuteryje.
+
+
+
+
+
+
+
+
