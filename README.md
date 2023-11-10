@@ -5,6 +5,22 @@
 **RAM:** 8 Gb <br />
 **HDD:** 256Gb SSD <br />
 
+# Releas'ų aprašymas
+## v0.1:
+1. Nuskaito duomenis iš failo bei priima dumenis įvestus ranka arba sugeneruotus ir tvarkingai juos apdoroja;
+2. Programa papildyta išimčių gaudymo metodu TRY - CATCH;
+3. Atliktas programos refactoring'as, kuris leidžia atskirai nagrinėti ir tvarkyti programos dalis failuose.
+
+## v0.2:
+1. Programa savarankiškai generuoja failus, pagal naudotojo nustatymus;
+2. Rezultatų failai duomenys pateikinėja atitinkamai pagal vardą pavardę ir galutinį pažymį, bei rūšiuojami pagal naudotojo parinktą parametrą, bei grupuoja į dvi grupes;
+3. Programoje atliekamas pasirinktų funkcijų testavimas 5 kartus, failų kūrimas, nuskaitymas, rušiavimas ir paskirstymas, pateikiamas atlkirų funkcijų vidurkis bei bendras vidurkis.
+
+## v0.3:
+1. Programa išskaidyta į dvį atskiras programas su List ir Vector tipo konteineriais;
+2. List ir Vector konteinerių atveju rankinio įvedimo metu ekrane išvedamas objekto saugojimo atmintyje adresas;
+3. Atliekamas testavimas su iš anksčiau sugeneruotais failais ir pateikti kelių testų laikų vidurkiai abejų konteinerių atveju.
+
 ## std::vector 3 strategijų testavimo laikų aprašymas:
 
 Testavimas atliekamas su **std::vector**,  lentelė sudaryta pagal penkis sugeneruotus failus ir jų vidurkius: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
