@@ -90,13 +90,14 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 
 |         Vector(Struct)        |   100000 O1   |   100000 O2   |   100000 O3   |  1000000 O1  |   1000000 O2  |   1000000 O3  |
 |:-----------------------------:|:-------------:|:-------------:|:-------------:|:------------:|:-------------:|:-------------:|
-|Failo Nuskaitymas       |  0.5864872 s. |  0.489574 s.  |  0.5502432 s. |  4.770758 s. |   4.86836 s.  |   4.76179 s.  |
-|Sort() veiksmas        | 0.03821272 s. | 0.04754054 s. | 0.04019078 s. |  0.553845 s. |  0.5296582 s. |  0.5478884 s. |
-|Padalijimas į dvi kategorijas | 0.00309958 s. | 0.01654182 s. | 0.01009942 s. | 0.1715242 s. |  0.1648226 s. |  0.1734082 s. |
-|Rašymas į vargščiukų failą  |  0.1477234 s. |  0.1235406 s. |  0.1655452 s. |  1.675816 s. |  1.673498 s.  |  1.625244 s.  |
-|Rašymas į kietuolių failą   |  0.1347786 s. |  0.122209 s.  |  0.1418554 s. |  1.483072 s. |  1.519442 s.  |  1.612124 s.  |
-|Bendras        |  0.8724888 s. |  0.7520647 s. |  0.8687435 s. | 8.1003724 s. | 8.42513456 s. | 8.17276554 s. |
+|Failo Nuskaitymas       |  0.1047336 s. |  0.1012521 s.  |  0.1029884 s. |  0.8945647 s. |   0.8684985 s.  |   0.8634867 s.  |
+|Sort() veiksmas        | 0.0105355 s. | 0.0119087 s. | 0.0108290 s. |  0.0647678 s. |  0.0662287 s. |  0.0626851 s. |
+|Padalijimas į dvi kategorijas | 0.0210280 s. | 0.0197281 s. | 0.0208310 s. | 0.1202604 s. |  0.1284925 s. |  0.1222045 s. |
+|Rašymas į vargščiukų failą  |  0.0663365 s. |  0.0656367 s. |  0.0678912 s. |  0.6133744 s. |  0.6039154 s.  |  0.6090311s.  |
+|Rašymas į kietuolių failą   |  0.0878979 s. |  0.0888083 s.  |  0.0890664 s. |  0.8782195 s. |  0.8799783 s.  |  0.8877255 s.  |
+|Bendras        |  0.2905315 s. |  0.2873339 s. |  0.291606 s. | 2.4509265 s. | 2.4186210 s. | 2.4229285 s. |
 
+**Išvada:** Su optimizavimo flagu **O2** programa su Struct struktūra ir vector dirba greičiausiai su dideliais duomenų kiekiais.
 
 **Class** vektoriaus atveju testavimo su flagais rezultatai:
 
