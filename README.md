@@ -80,7 +80,7 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 |:-----------------------------:|:-------------:|:-------------:|:-----------------------------:|:-------------:|:------------:|
 |Failo Nuskaitymas       | 1.07586886 s. |  7.5074866 s. |Failo Nuskaitymas       |  1.734298 s.  |  15.05332 s. |
 |Sort() veiksmas        |  0.4211282 s. |  4.860546 s.  |Sort() veiksmas        |  0.4335954 s. |  4.842296 s. |
-|Padalijimas į dvi kategorijas |  0.0383447 s. |  0.4194998 s. |Padalijimas į dvi kategorijas | 0.03993036 s. | 0.4644954 s. |
+|Padalijimas į dvi grupes |  0.0383447 s. |  0.4194998 s. |Padalijimas į dvi grupes | 0.03993036 s. | 0.4644954 s. |
 |Rašymas į vargščiukų failą  |  0.1644058 s. |  1.713978 s.  |Rašymas į vargščiukų failą  |  0.1677366 s. |  1.848376 s. |
 |Rašymas į kietuolių failą   |  0.1898104 s. |  1.7326022 s. |Rašymas į kietuolių failą   |  0.180565 s.  | 1.6300066 s. |
 |Bendras        | 1.34658872 s. | 11.3739598 s. |Bendras       |  2.1229318 s. | 18.777604 s. |
@@ -92,7 +92,7 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 |:-----------------------------:|:-------------:|:-------------:|:-------------:|:------------:|:-------------:|:-------------:|
 |Failo Nuskaitymas       |  0.1047336 s. |  0.1012521 s.  |  0.1029884 s. |  0.8945647 s. |   0.8684985 s.  |   0.8634867 s.  |
 |Sort() veiksmas        | 0.0105355 s. | 0.0119087 s. | 0.0108290 s. |  0.0647678 s. |  0.0662287 s. |  0.0626851 s. |
-|Padalijimas į dvi kategorijas | 0.0210280 s. | 0.0197281 s. | 0.0208310 s. | 0.1202604 s. |  0.1284925 s. |  0.1222045 s. |
+|Padalijimas į dvi grupes | 0.0210280 s. | 0.0197281 s. | 0.0208310 s. | 0.1202604 s. |  0.1284925 s. |  0.1222045 s. |
 |Rašymas į vargščiukų failą  |  0.0663365 s. |  0.0656367 s. |  0.0678912 s. |  0.6133744 s. |  0.6039154 s.  |  0.6090311s.  |
 |Rašymas į kietuolių failą   |  0.0878979 s. |  0.0888083 s.  |  0.0890664 s. |  0.8782195 s. |  0.8799783 s.  |  0.8877255 s.  |
 |Bendras        |  0.2905315 s. |  0.2873339 s. |  0.291606 s. | 2.4509265 s. | 2.4186210 s. | 2.4229285 s. |
@@ -112,11 +112,11 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 
 **Išvada:** Su optimizavimo flagu **O3** programa su Class struktūra ir vector dirba greičiausiai su dideliais duomenų kiekiais.
 
-Exe. failo dydžiai priklausomai nuo panaudoto flago:
+Exec failo dydžiai priklausomai nuo panaudoto flago:
 | Vector | Be flagu | O1      | O2      | O3      |
 |--------|----------|---------|---------|---------|
-| Struct | 731 KB   | 2.33 MB | 2.44 MB | 2.64 MB |
-| Class  | 751 KB   | 2.02 MB | 2.11 MB | 2.89 MB |
+| Struct | 303 KB   | 106 KB | 106 KB | 106 KB |
+| Class  | 324 KB   | 106 KB | 106 KB | 106 KB |
 
 
 
