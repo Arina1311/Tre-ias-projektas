@@ -73,6 +73,49 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 - Toliau reikia pasirinkti pagal kokia strategiją norite paskirstyti galutinius duomenys, jei pagal 1 strategiją, paspauskite "1", jei pagal 2 strategiją - "2", 3 strategiją Pažymį - "3";
 - Programa baigta ir failai bus paruošti jūsų kompiuteryje.
 
+# Programos versija V1.1:
+**Struct** ir **Class** vektoriaus atveju testavimo rezultatai naudojant greičiausia dalijimo strategiją **(3)**:
+
+|         Vector(Struct)        |     100000    |    1000000    |         Vector(Class)         |     100000    |    1000000   |
+|:-----------------------------:|:-------------:|:-------------:|:-----------------------------:|:-------------:|:------------:|
+|Failo Nuskaitymas       | 1.07586886 s. |  7.5074866 s. |Failo Nuskaitymas       |  1.734298 s.  |  15.05332 s. |
+|Sort() veiksmas        |  0.4211282 s. |  4.860546 s.  |Sort() veiksmas        |  0.4335954 s. |  4.842296 s. |
+|Padalijimas į dvi kategorijas |  0.0383447 s. |  0.4194998 s. |Padalijimas į dvi kategorijas | 0.03993036 s. | 0.4644954 s. |
+|Rašymas į vargščiukų failą  |  0.1644058 s. |  1.713978 s.  |Rašymas į vargščiukų failą  |  0.1677366 s. |  1.848376 s. |
+|Rašymas į kietuolių failą   |  0.1898104 s. |  1.7326022 s. |Rašymas į kietuolių failą   |  0.180565 s.  | 1.6300066 s. |
+|Bendras        | 1.34658872 s. | 11.3739598 s. |Bendras       |  2.1229318 s. | 18.777604 s. |
+
+
+**Struct** vektoriaus atveju testavimo su flagais rezultatai:
+
+|         Vector(Struct)        |   100000 O1   |   100000 O2   |   100000 O3   |  1000000 O1  |   1000000 O2  |   1000000 O3  |
+|:-----------------------------:|:-------------:|:-------------:|:-------------:|:------------:|:-------------:|:-------------:|
+|Failo Nuskaitymas       |  0.5864872 s. |  0.489574 s.  |  0.5502432 s. |  4.770758 s. |   4.86836 s.  |   4.76179 s.  |
+|Sort() veiksmas        | 0.03821272 s. | 0.04754054 s. | 0.04019078 s. |  0.553845 s. |  0.5296582 s. |  0.5478884 s. |
+|Padalijimas į dvi kategorijas | 0.00309958 s. | 0.01654182 s. | 0.01009942 s. | 0.1715242 s. |  0.1648226 s. |  0.1734082 s. |
+|Rašymas į vargščiukų failą  |  0.1477234 s. |  0.1235406 s. |  0.1655452 s. |  1.675816 s. |  1.673498 s.  |  1.625244 s.  |
+|Rašymas į kietuolių failą   |  0.1347786 s. |  0.122209 s.  |  0.1418554 s. |  1.483072 s. |  1.519442 s.  |  1.612124 s.  |
+|Bendras        |  0.8724888 s. |  0.7520647 s. |  0.8687435 s. | 8.1003724 s. | 8.42513456 s. | 8.17276554 s. |
+
+
+**Class** vektoriaus atveju testavimo su flagais rezultatai:
+
+|         Vector(Class)         |   100000 O1   |   100000 O2  |   100000 O3  |   1000000 O1  |   1000000 O2  |   1000000 O3  |
+|:-----------------------------:|:-------------:|:------------:|:------------:|:-------------:|:-------------:|:-------------:|
+|Failo Nuskaitymas       |  0.1073417 s. | 0.1075639 s. | 0.1050410 s. |   0.9302178 s.  |   0.9164523 s.  |  0.8666101 s.  |
+|Sort() veiksmas        |  0.0138788 s. |  0.0122416 s. | 0.0128199 s. |  0.0842912 s.  |  0.0766853 s.  |  0.0793048 s.  |
+|Padalijimas į dvi grupes |  0.0240622 s. | 0.0212215 s. | 0.0245570 s. |  0.1370512 s. |  0.1271955 s. |  0.1300693 s. |
+|Rašymas į vargščiukų failą  |  0.0646673 s.  | 0.0650587 s. |  0.0654038 s. |  0.6131768 s. |   0.6235871 s.  |  0.6318640 s.  |
+|Rašymas į kietuolių failą   |  0.0858257 s. | 0.0854569 s. | 0.0879485 s. |   0.8755665 s.   |   0.8771652 s.  |   0.8864610 s.  |
+|Bendras        | 0.2957751 s. | 0.2703213 s. | 0.2712133 s. | 2.5032525 s. | 2.6210854 s. | 2.4642400 s. |
+
+**Išvada:** Su optimizavimo flagu **O3** programa su Class struktūra ir vector dirba greičiausiai su dideliais duomenų kiekiais.
+
+Exe. failo dydžiai priklausomai nuo panaudoto flago:
+| Vector | Be flagu | O1      | O2      | O3      |
+|--------|----------|---------|---------|---------|
+| Struct | 731 KB   | 2.33 MB | 2.44 MB | 2.64 MB |
+| Class  | 751 KB   | 2.02 MB | 2.11 MB | 2.89 MB |
 
 
 
