@@ -78,12 +78,12 @@ https://drive.google.com/drive/folders/1b8IdE8_pNSONs7pBUKtDEgICM11XkCUZ?usp=sha
 
 |         Vector(Struct)        |     100000    |    1000000    |         Vector(Class)         |     100000    |    1000000   |
 |:-----------------------------:|:-------------:|:-------------:|:-----------------------------:|:-------------:|:------------:|
-|Failo Nuskaitymas       | 1.07586886 s. |  7.5074866 s. |Failo Nuskaitymas       |  1.734298 s.  |  15.05332 s. |
-|Sort() veiksmas        |  0.4211282 s. |  4.860546 s.  |Sort() veiksmas        |  0.4335954 s. |  4.842296 s. |
-|Padalijimas į dvi grupes |  0.0383447 s. |  0.4194998 s. |Padalijimas į dvi grupes | 0.03993036 s. | 0.4644954 s. |
-|Rašymas į vargščiukų failą  |  0.1644058 s. |  1.713978 s.  |Rašymas į vargščiukų failą  |  0.1677366 s. |  1.848376 s. |
-|Rašymas į kietuolių failą   |  0.1898104 s. |  1.7326022 s. |Rašymas į kietuolių failą   |  0.180565 s.  | 1.6300066 s. |
-|Bendras        | 1.34658872 s. | 11.3739598 s. |Bendras       |  2.1229318 s. | 18.777604 s. |
+|Failo Nuskaitymas       | 1.07586886 s. |  3.2657213 s. |Failo Nuskaitymas       |  1.5432338 s.  |  4.05332 s. |
+|Sort() veiksmas        |  0.4211282 s. |  0.1614838 s.  |Sort() veiksmas        |  0.4335954 s. |  3.843296 s. |
+|Padalijimas į dvi grupes |  0.0383447 s. |  0.6047205 s. |Padalijimas į dvi grupes | 0.03993036 s. | 0.4424954 s. |
+|Rašymas į vargščiukų failą  |  0.1644058 s. |  0.7435087 s.  |Rašymas į vargščiukų failą  |  0.1677366 s. |  1.848376 s. |
+|Rašymas į kietuolių failą   |  0.1898104 s. |  0.9762628 s. |Rašymas į kietuolių failą   |  0.180565 s.  | 1.6300066 s. |
+|Bendras        | 1.34658872 s. | 5.14697673 s. |Bendras       |  1.6229318 s. | 9.777604 s. |
 
 
 **Struct** vektoriaus atveju testavimo su flagais rezultatai:
