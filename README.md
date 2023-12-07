@@ -118,6 +118,12 @@ Exec failo dydžiai priklausomai nuo panaudoto flago:
 | Struct | 303 KB   | 106 KB | 106 KB | 106 KB |
 | Class  | 324 KB   | 106 KB | 106 KB | 106 KB |
 
+# "Rule of three" įgyvendinimas klasėje
+<img width="1470" alt="Rule Of Free" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/884f51e7-2262-46fb-8f02-71db9eae0afc">
+Klasėje yra sukurti:<br />
+1. Kopijavimo konstruktorius;
+2. Priskyrimo operatorius;
+3. Destruktorius.
 
 
 
