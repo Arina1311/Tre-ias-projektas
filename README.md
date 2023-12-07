@@ -121,9 +121,15 @@ Exec failo dydžiai priklausomai nuo panaudoto flago:
 # "Rule of three" įgyvendinimas klasėje
 <img width="1470" alt="Rule Of Free" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/884f51e7-2262-46fb-8f02-71db9eae0afc">
 Klasėje yra sukurti:<br />
-1. Kopijavimo konstruktorius;
-2. Priskyrimo operatorius;
-3. Destruktorius.
+1. Kopijavimo konstruktorius; <br />
+2. Priskyrimo operatorius; <br />
+3. Destruktorius. <br />
+
+# Įvesties ir išvesties operatoriai klasėje
+<img width="1470" alt="Ivestis" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/2b288d39-0ad4-4b25-ab97-2eeed48c21c1">
+<img width="1470" alt="Ivestis 2" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/88841a85-592d-4f5b-98eb-cc2b80457b33">
+<img width="1470" alt="Isvestis" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/9f55b96a-41bf-4b7d-b505-5b9e07b066c7">
+
 
 
 
