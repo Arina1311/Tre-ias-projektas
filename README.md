@@ -130,7 +130,15 @@ Klasėje yra sukurti:<br />
 <img width="1470" alt="Ivestis 2" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/88841a85-592d-4f5b-98eb-cc2b80457b33">
 <img width="1470" alt="Isvestis" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/9f55b96a-41bf-4b7d-b505-5b9e07b066c7">
 
+# Įvesties ir išvesties realizavimas programoje
+## Įvesties realizavimas main.cpp:
+<img width="1470" alt="Realizavimas ivesties" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/27b0d876-e05a-40b6-82c9-2d44cdc5edc4">
 
+Įvesties operatorius suveikia tuo metu, kai naudotojas nori savarankiškai sukurti studentams duomenis arba juos sugeneruoti programos pagalba.
+## Išvesties realizavimas išvedimas.cpp funkcijose:
+<img width="1470" alt="Realizavimas isvesties" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/50d00498-0e95-4ebf-a14b-0f61edd593bc">
+
+Išvesties operatorius suveikia tuo metu, kai naudotojas prašo parodyti skaičiavimų rezultatą ekrane arba surašyti rezultatus į failą.
 
 
 
