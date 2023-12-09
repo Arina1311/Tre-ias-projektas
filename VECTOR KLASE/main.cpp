@@ -8,6 +8,32 @@
 #include "Isvedimas.h"
 
 int main() {
+    //Studento klases objekto kurimas
+    Studentas Studentas1;
+    Studentas1.setvardas("Arina");
+    Studentas1.setpavarde("Tichonovskaja");
+    Studentas1.NDPrideti(10);
+    Studentas1.NDPrideti(9);
+    Studentas1.NDPrideti(8);
+    Studentas1.NDPrideti(7);
+    Studentas1.NDPrideti(8);
+    Studentas1.setEgzaminas(10);
+
+    Studentas Studentas2 = Studentas1;
+
+    cout << "------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "Informacija Studentas1: " << endl;
+    Studentas1.informacija();
+    cout << "------------------------------------------------------" << endl;
+     cout << endl;
+    cout << "Informacija Studentas2: " << endl;
+    cout<< Studentas2 <<endl;
+    cout << "------------------------------------------------------" << endl;
+
+    //Parodome, kad Zmogus klases objektas negali but sukurtas
+    //Zmogus Zmogus1("Arina", "Tichonovskaja");
+
     Studentas Laikinas; 
     vector<Studentas> grupe;
     int StudentuSkaicius;
