@@ -10,6 +10,27 @@
 #include <random>
 using namespace std;
 
+class Zmogus {
+protected:
+    string Vardas, Pavarde;
+
+public:
+    // Konstruktoriai   
+    Zmogus(const string& vardas, const string& pavarde) :
+             Vardas(vardas), Pavarde(pavarde) {}
+    
+    virtual ~Zmogus() = 0;
+
+     //Geteriai
+     virtual inline string vardas() const { return Vardas; }
+     virtual inline string pavarde() const { return Pavarde; }
+
+     //Setteriai
+     virtual void setvardas(const string& naujasVardas) { Vardas = naujasVardas; }
+     virtual void setpavarde(const string& naujaPavarde) { Pavarde = naujaPavarde; }
+     virtual void informacija() const = 0;
+ };
+
 class Studentas {
 private:
     string Vardas, Pavarde;
