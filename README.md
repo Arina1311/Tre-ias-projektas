@@ -22,6 +22,9 @@
 3. Atliekamas testavimas su iš anksčiau sugeneruotais failais ir pateikti kelių testų laikų vidurkiai abejų konteinerių atveju.
 
 ## v1.0
+1. List ir Vector konteinerių atveju realizuotos visos strategijos (1-3);
+2. Buvo atliktas testavimas su iš anksčiau sugeneruotais failais ir pateiktas kelių testų laikų vidurkis abiejų konteinerių atveju;
+3. Programai sukurtas diegimo CMake failas bei paleidimo proceso instrukciją.
 
 ## v1.1
 1. Sukurta programa su Class struktūra;
@@ -34,7 +37,10 @@
 3. Perdengti įvesties ir išvesties metodai darbui su Studentas class.
 
 ## v1.5
-
+1. Realizuota abstrakti klasė Žmogus;
+2. Realizuota, kad Studento klasė yra išvestinė iš Žmogaus klasės ir joje įgyvendintas "Rule of three" metodas;
+3. Programoje yra patikrinama, ar yra galimybė sukurti klasės Žmogus objektą.
+   
 ## std::vector 3 strategijų testavimo laikų aprašymas:
 
 Testavimas atliekamas su **std::vector**,  lentelė sudaryta pagal penkis sugeneruotus failus ir jų vidurkius: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
@@ -154,7 +160,18 @@ Klasėje yra sukurti:<br />
 
 Išvesties operatorius suveikia tuo metu, kai naudotojas prašo parodyti skaičiavimų rezultatą ekrane arba surašyti rezultatus į failą.
 
+## Abstrakčios klasės Žmogus kūrimas ir klasės Studentas realizavimas kaip išvestinės klasės iš klasės Žmogus
+Duomenys.h faile yra realizuota abstrakti klasė Žmogus su virtualiais metodais.<br />
+<br />
+<img width="736" alt="Снимок экрана 2023-12-09 в 15 11 23" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/26764cb0-48e1-4ea7-a955-b720ed4d27c9"><br />
 
+Taip pat padaryta, kad klasė Studentas būtų klasės Žmogus išvestinė klasė su savo metodais, joje taip pat lieka įgyvendintas metodas "Rule of three".<br />
+<br />
+<img width="938" alt="Снимок экрана 2023-12-09 в 15 12 00" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/e7ff86d9-0b70-4f5d-aaea-dfb088d38272"><br />
+
+Programoje yra tikrinama, ar galime sukurti iš karto Žmogaus klasės objektą, programa parodo klaidą, kad to neįmanoma padaryti.<br />
+<br />
+<img width="1244" alt="Снимок экрана 2023-12-09 в 15 04 05" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/1744c28d-c025-4d63-8b1e-8ecc6e6c56cf">
 
 
 
