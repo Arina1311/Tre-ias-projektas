@@ -21,6 +21,20 @@
 2. List ir Vector konteinerių atveju rankinio įvedimo metu ekrane išvedamas objekto saugojimo atmintyje adresas;
 3. Atliekamas testavimas su iš anksčiau sugeneruotais failais ir pateikti kelių testų laikų vidurkiai abejų konteinerių atveju.
 
+## v1.0
+
+## v1.1
+1. Sukurta programa su Class struktūra;
+2. Programa naudoja patobulinta greičiausią dalijimo į dvi grupes strategiją;
+3. Programa ištestuota su optimizavimo flagais O1, O2 ir O3.
+
+## v1.2
+1. Realizuotas "Rule of three" metodas;
+2. Realizuoti įvesties ir įšvesties operatoriai klasėje;
+3. Perdengti įvesties ir išvesties metodai darbui su Studentas class.
+
+## v1.5
+
 ## std::vector 3 strategijų testavimo laikų aprašymas:
 
 Testavimas atliekamas su **std::vector**,  lentelė sudaryta pagal penkis sugeneruotus failus ir jų vidurkius: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
