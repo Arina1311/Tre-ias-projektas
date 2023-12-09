@@ -15,21 +15,21 @@ protected:
     string Vardas, Pavarde;
 
 public:
-    // Konstruktoriai   
     Zmogus(const string& vardas, const string& pavarde) :
-             Vardas(vardas), Pavarde(pavarde) {}
-    
-    virtual ~Zmogus() = 0;
+        Vardas(vardas), Pavarde(pavarde) {}
 
-     //Geteriai
-     virtual inline string vardas() const { return Vardas; }
-     virtual inline string pavarde() const { return Pavarde; }
+    virtual ~Zmogus() {}
 
-     //Setteriai
-     virtual void setvardas(const string& naujasVardas) { Vardas = naujasVardas; }
-     virtual void setpavarde(const string& naujaPavarde) { Pavarde = naujaPavarde; }
-     virtual void informacija() const = 0;
- };
+    //Geteriai
+    virtual inline string vardas() const { return Vardas; }
+    virtual inline string pavarde() const { return Pavarde; }
+
+    //Setteriai
+    virtual void setvardas(const string& naujasVardas) { Vardas = naujasVardas; }
+    virtual void setpavarde(const string& naujaPavarde) { Pavarde = naujaPavarde; }
+    virtual void informacija() const = 0;
+};
+
 
 class Studentas : public Zmogus {
 private:
@@ -44,13 +44,24 @@ public:
     //Parametrizuotas
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egzaminas, float pazymys)
         : Zmogus(vardas, pavarde), ND(nd), Egzaminas(egzaminas), Pazymys(pazymys) {}
-
+    
+    void informacija() const override { 
+    cout << "Studento informacija: " << vardas() << " " << pavarde() << endl;
+    cout << "Namu darbai: ";
+    for (int nd : ND) {
+        cout << nd << " ";
+    }
+    cout << endl;
+    cout << "Egzamino rezultatas: " << egzaminas() << endl;
+    cout << "Galutinis pazymys: " << pazymys() << endl;
+    };
     
     // Kopijavimo konstruktorius
-    Studentas(const Studentas& other)
-        : Zmogus(other.Vardas, other.Pavarde), ND(other.ND),
-          Egzaminas(other.Egzaminas), Pazymys(other.Pazymys) {}
-
+    Studentas(const Studentas& other) : Zmogus(other.Vardas, other.Pavarde){
+        ND = other.ND;
+        Egzaminas = other.Egzaminas;
+        Pazymys = other.Pazymys;
+    }
 
     // Priskyrimo operatorius
     Studentas& operator=(const Studentas& other) {
@@ -115,7 +126,7 @@ public:
             in >> student.Vardas >> student.Pavarde;
             
             char ats;
-            cout << "Ar norite generuoti pazymius (T -taip, N - ne)? ";
+            cout << "Ar norite generuoti pazymius (T - taip, N - ne)? ";
             in >> ats;
             if (ats == 'T' || ats == 't'){
             // Generuojame atsitiktinius namų darbų balus
