@@ -31,33 +31,31 @@ public:
      virtual void informacija() const = 0;
  };
 
-class Studentas {
+class Studentas : public Zmogus {
 private:
-    string Vardas, Pavarde;
     vector<int> ND;
     int Egzaminas;
     float Pazymys;
 
 public:
     // Konstruktoriai
-    Studentas() : Vardas(" "), Pavarde(" "), Egzaminas(0), Pazymys(0) {}
+    Studentas() : Zmogus(" ", " "), Egzaminas(0), Pazymys(0) {}
 
     //Parametrizuotas
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egzaminas, float pazymys)
-        : Vardas(vardas), Pavarde(pavarde), ND(nd), Egzaminas(egzaminas), Pazymys(pazymys) {}
+        : Zmogus(vardas, pavarde), ND(nd), Egzaminas(egzaminas), Pazymys(pazymys) {}
 
     
     // Kopijavimo konstruktorius
     Studentas(const Studentas& other)
-        : Vardas(other.Vardas), Pavarde(other.Pavarde), ND(other.ND),
+        : Zmogus(other.Vardas, other.Pavarde), ND(other.ND),
           Egzaminas(other.Egzaminas), Pazymys(other.Pazymys) {}
 
 
     // Priskyrimo operatorius
     Studentas& operator=(const Studentas& other) {
         if (this != &other) {
-            Vardas = other.Vardas;
-            Pavarde = other.Pavarde;
+            Zmogus::operator=(other);
             ND = other.ND;
             Egzaminas = other.Egzaminas;
             Pazymys = other.Pazymys;
