@@ -8,8 +8,6 @@
 #include <fstream>
 #include <vector>
 
-
-
 TEST(StudentasTest, SettersAndGetters) {
     Studentas student;
     student.setvardas("Arina");
