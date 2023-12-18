@@ -179,7 +179,9 @@ Programoje yra tikrinama, ar galime sukurti iš karto Žmogaus klasės objektą,
 ## Unit Testai
 Testuoti programą buvo naudojamas Google Test Framework'as. <br />
 Buvo sukurti tris testai:<br /><br />
-**Įvesties testas:**<br />
-<img width="666" alt="Снимок экрана 2023-12-18 в 20 50 14" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/d4887dd2-f049-48ea-98b7-3c57dda95f93"><br />
-**Galutinio pažymio testas:**<br />
-<img width="928" alt="Снимок экрана 2023-12-18 в 20 50 38" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/398be04a-646e-4ced-907e-602b62c6a95b"><br />
+**Įvesties testas:**<br /><br />
+<img width="666" alt="Снимок экрана 2023-12-18 в 20 50 14" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/d4887dd2-f049-48ea-98b7-3c57dda95f93"><br /><br />
+**Galutinio pažymio testas:**<br /><br />
+<img width="928" alt="Снимок экрана 2023-12-18 в 20 50 38" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/398be04a-646e-4ced-907e-602b62c6a95b"><br /><br />
+**Duomenų failo skatymo testas:**<br /><br />
+<img width="680" alt="Снимок экрана 2023-12-18 в 20 50 51" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/0cd384a7-83c4-4f3b-beeb-2d677444d410"><br /><br />
