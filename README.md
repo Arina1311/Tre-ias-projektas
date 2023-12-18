@@ -203,4 +203,6 @@ Dėl to, kad MacOs neturi setup failų, o kuria tik dmg failus instaliavimui, ta
 ## Naudojimosi instrunkcija:
 1. Parsisiųsti failą *Klase_Studentas.dmg*;<br />
 <img width="252" alt="Снимок экрана 2023-12-18 в 21 40 50" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/b20768e1-37e6-44fb-8744-48fa7cc24c6c"><br />
-2.
+2. Paleisti failą *Klase_Studentas.dmg*, ji automatiškai sugeneruoja **build**;<br />
+<img width="136" alt="Снимок экрана 2023-12-18 в 21 42 51" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/d0933703-d562-471d-b3f3-4de7b7bb04fa">
+<br />
