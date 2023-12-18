@@ -176,7 +176,7 @@ Programoje yra tikrinama, ar galime sukurti iš karto Žmogaus klasės objektą,
 <br />
 <img width="1244" alt="Снимок экрана 2023-12-09 в 15 04 05" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/1744c28d-c025-4d63-8b1e-8ecc6e6c56cf">
 
-## Unit Testai
+# Unit Testai
 Testuoti programą buvo naudojamas Google Test Framework'as. <br />
 Buvo sukurti tris testai:<br /><br />
 **Įvesties testas:**<br /><br />
@@ -185,3 +185,10 @@ Buvo sukurti tris testai:<br /><br />
 <img width="928" alt="Снимок экрана 2023-12-18 в 20 50 38" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/398be04a-646e-4ced-907e-602b62c6a95b"><br /><br />
 **Duomenų failo skatymo testas:**<br /><br />
 <img width="680" alt="Снимок экрана 2023-12-18 в 20 50 51" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/0cd384a7-83c4-4f3b-beeb-2d677444d410"><br /><br />
+
+Atlikus šiuos testus programa veikia teisingai ir praena visus testus: <br /><br />
+<img width="508" alt="Снимок экрана 2023-12-18 в 20 48 55" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/8de4ff6b-2a9b-4d10-8f3a-cd0536a6eb9f"><br /><br />
+Jeigu pakeisime įvesties laukiamą rezultatą taip: <br /><br />
+<img width="452" alt="Снимок экрана 2023-12-18 в 20 51 22" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/8a07a303-ecb5-41e6-be9c-e892c4003870"><br /><br />
+Tai pamatysime, kad vieno testo programa neišlaikė:<br /><br />
+<img width="510" alt="Снимок экрана 2023-12-18 в 20 52 19" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/6c7fcf7d-62a2-4b47-8389-80cb391476f7"><br /><br />
