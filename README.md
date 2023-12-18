@@ -210,5 +210,5 @@ Dėl to, kad MacOs neturi setup failų, o kuria tik dmg failus instaliavimui, ta
 <img width="907" alt="Снимок экрана 2023-12-18 в 21 46 00" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/5d0254dd-6497-4399-b38c-ded23b539883"><br />
 3.1. Norėdami, pasileiti programą, reikia paspausti: <br />
 <img width="168" alt="Снимок экрана 2023-12-18 в 21 46 13" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/4a7e1640-8580-41d3-956a-bf93411d19cd"><br />
-3.2. Norėdami, pasileiti testus,, reikia paspausti: <br />
+3.2. Norėdami, pasileiti testus, reikia paspausti: <br />
 <img width="163" alt="Снимок экрана 2023-12-18 в 21 46 09" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/31951424-ccf2-4c95-8705-decadf288f29"><br />
