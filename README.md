@@ -204,5 +204,8 @@ Dėl to, kad MacOs neturi setup failų, o kuria tik dmg failus instaliavimui, ta
 1. Parsisiųsti failą *Klase_Studentas.dmg*;<br />
 <img width="252" alt="Снимок экрана 2023-12-18 в 21 40 50" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/b20768e1-37e6-44fb-8744-48fa7cc24c6c"><br />
 2. Paleisti failą *Klase_Studentas.dmg*, ji automatiškai sugeneruoja **build**;<br />
-<img width="136" alt="Снимок экрана 2023-12-18 в 21 42 51" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/d0933703-d562-471d-b3f3-4de7b7bb04fa">
+<img width="97" alt="Снимок экрана 2023-12-18 в 21 44 41" src="https://github.com/Arina1311/TreciasProjektas/assets/144428021/d59297c8-d518-45e9-99b8-d979fddd9d10">
 <br />
+3. Reikia atidaryti **build**, matysime tokį vaizdą;<br />
+3.1. Norėdami, pasileiti programą, reikia paspausti: <br />
+3.2. Norėdami, pasileiti testus,, reikia paspausti: <br />
