@@ -46,6 +46,9 @@
 2. Sukurti tris UnitTestai;
 3. Programa patikrinta ir įveikia visus UnitTestus.
 
+## v3.0
+1. Sukurtas dmg instaliavimo failas;
+2. Parengta instaliavimo instrukcija.
 ## std::vector 3 strategijų testavimo laikų aprašymas:
 
 Testavimas atliekamas su **std::vector**,  lentelė sudaryta pagal penkis sugeneruotus failus ir jų vidurkius: studentai_1000.txt, studentai_10000.txt, studentai_100000.txt, studentai_1000000.txt, studentai_10000000.txt.
@@ -194,3 +197,8 @@ Jeigu pakeisime įvesties laukiamą rezultatą taip: <br /><br />
 <img width="452" alt="Снимок экрана 2023-12-18 в 20 51 22" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/8a07a303-ecb5-41e6-be9c-e892c4003870"><br /><br />
 Tai pamatysime, kad vieno testo programa neišlaikė:<br /><br />
 <img width="510" alt="Снимок экрана 2023-12-18 в 20 52 19" src="https://github.com/Arina1311/AntrasProjektas/assets/144428021/6c7fcf7d-62a2-4b47-8389-80cb391476f7"><br /><br />
+
+# MacOs operacinės sistemos kūriamas dmg failas
+Dėl to, kad MacOs neturi setup failų, o kuria tik dmg failus instaliavimui, tai buvo sukompiliuotas *Klase_Studentas.dmg* instaliavimo failas.<br />
+## Naudojimosi indtrunkcija:
+1. Parsisiųsti failą *Klase_Studentas.dmg*;
