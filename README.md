@@ -43,6 +43,8 @@
 
 ## v2.0
 1. Sukurta Doxygen dokumentacija;
+2. Sukurti tris UnitTestai;
+3. Programa patikrinta ir įveikia visus UnitTestus.
 
 ## std::vector 3 strategijų testavimo laikų aprašymas:
 
